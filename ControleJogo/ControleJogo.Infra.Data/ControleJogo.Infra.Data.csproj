@@ -52,14 +52,24 @@
     <Compile Include="Contexto\Mapping\AmigoMapping.cs" />
     <Compile Include="Contexto\Mapping\CategoriaMapping.cs" />
     <Compile Include="Contexto\Mapping\EmailMapping.cs" />
+    <Compile Include="Contexto\Mapping\EmprestimoJogoMapping.cs" />
     <Compile Include="Contexto\Mapping\JogoMapping.cs" />
     <Compile Include="Contexto\Mapping\LogradouroMapping.cs" />
     <Compile Include="Migrations\201711161840044_ScriptInicial.cs" />
     <Compile Include="Migrations\201711161840044_ScriptInicial.Designer.cs">
       <DependentUpon>201711161840044_ScriptInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711161927429_Script00001.cs" />
+    <Compile Include="Migrations\201711161927429_Script00001.Designer.cs">
+      <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AmigoRepository.cs" />
+    <Compile Include="Repositories\CategoriaRepository.cs" />
+    <Compile Include="Repositories\EmprestimoJogoRepository.cs" />
+    <Compile Include="Repositories\JogoRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,6 +88,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711161840044_ScriptInicial.resx">
       <DependentUpon>201711161840044_ScriptInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711161927429_Script00001.resx">
+      <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

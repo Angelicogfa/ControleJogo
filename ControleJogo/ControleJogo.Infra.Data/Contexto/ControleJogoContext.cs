@@ -1,4 +1,5 @@
 ﻿using ControleJogo.Dominio.Amigos.Entities;
+using ControleJogo.Dominio.Emprestimo.Entities;
 using ControleJogo.Dominio.Jogos.Entities;
 using ControleJogo.Infra.Data.Contexto.Mapping;
 using FluentValidation.Results;
@@ -20,6 +21,7 @@ namespace ControleJogo.Infra.Data.Contexto
         public DbSet<Amigo> Amigos { get; private set; }
         public DbSet<Jogo> Jogos { get; private set; }
         public DbSet<Categoria> Categoria { get; private set; }
+        public DbSet<EmprestimoJogo> Emprestimos { get; private set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +39,7 @@ namespace ControleJogo.Infra.Data.Contexto
             modelBuilder.Configurations.Add(new CategoriaMapping());
             modelBuilder.Configurations.Add(new JogoMapping());
             modelBuilder.Configurations.Add(new AmigoMapping());
+            modelBuilder.Configurations.Add(new EmprestimoJogoMapping());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -2,6 +2,7 @@
 using DomainDrivenDesign.Services;
 using System;
 using ControleJogo.Dominio.Jogos.Repositories;
+using System.Threading.Tasks;
 
 namespace ControleJogo.Dominio.Jogos.Services
 {
@@ -25,6 +26,11 @@ namespace ControleJogo.Dominio.Jogos.Services
                 return obj;
 
             return obj = base.Atualizar(obj);
+        }
+
+        public Task<bool> JogoDisponivelParaEmprestimo(Guid JogoId)
+        {
+            return Task.FromResult(true);
         }
     }
 }
