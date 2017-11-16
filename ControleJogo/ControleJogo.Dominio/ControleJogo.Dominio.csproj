@@ -34,6 +34,9 @@
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +51,11 @@
     <Compile Include="Amigos\Validations\AmigoEstaConsistenteValidator.cs" />
     <Compile Include="Amigos\Validations\EmailEstaConsistenteValidator.cs" />
     <Compile Include="Amigos\Validations\LogradouroEstaConsistenteValidator.cs" />
+    <Compile Include="Emprestimo\Commands\NovoEmprestimoCommand.cs" />
+    <Compile Include="Emprestimo\Entities\EmprestimoJogo.cs" />
+    <Compile Include="Emprestimo\Repository\IEmprestimoJogoRepository.cs" />
+    <Compile Include="Emprestimo\Sagas\EmprestarJogosSaga.cs" />
+    <Compile Include="Emprestimo\Sagas\SagaBase.cs" />
     <Compile Include="Jogos\Entities\Categoria.cs" />
     <Compile Include="Jogos\Entities\Jogo.cs" />
     <Compile Include="Jogos\Entities\StatusJogo.cs" />
@@ -63,6 +71,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\CQRS\CQRS.csproj">
+      <Project>{2c7c4335-cce4-4472-b138-e020e67d3189}</Project>
+      <Name>CQRS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DomainDrivenDesign\DomainDrivenDesign.csproj">
       <Project>{2b8950bd-15d3-4c66-9371-fe528e3df7ca}</Project>
       <Name>DomainDrivenDesign</Name>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign", "Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleJogo.Infra.Data", "ControleJogo.Infra.Data\ControleJogo.Infra.Data.csproj", "{D04F4502-1E4B-431B-98FD-1D7B695BED4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{2C7C4335-CCE4-4472-B138-E020E67D3189}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D04F4502-1E4B-431B-98FD-1D7B695BED4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D04F4502-1E4B-431B-98FD-1D7B695BED4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D04F4502-1E4B-431B-98FD-1D7B695BED4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C7C4335-CCE4-4472-B138-E020E67D3189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C7C4335-CCE4-4472-B138-E020E67D3189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C7C4335-CCE4-4472-B138-E020E67D3189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C7C4335-CCE4-4472-B138-E020E67D3189}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

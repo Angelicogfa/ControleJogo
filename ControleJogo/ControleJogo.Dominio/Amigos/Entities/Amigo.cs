@@ -1,8 +1,11 @@
 ﻿using ControleJogo.Dominio.Amigos.ObejctValues;
 using ControleJogo.Dominio.Amigos.Validations;
+using ControleJogo.Dominio.Emprestimo.Entities;
 using DomainDrivenDesign.Entities;
 using FluentValidation.Results;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ControleJogo.Dominio.Amigos.Entities
 {
@@ -14,6 +17,8 @@ namespace ControleJogo.Dominio.Amigos.Entities
         public Logradouro Logradouro { get; private set; }
         public ValidationResult ValidationResult { get; set; }
 
+        public ICollection<EmprestimoJogo> EmprestimosEfetuados { get; private set; }
+
         public Amigo(string Nome, string Email, Logradouro logradouro)
         {
             Id = Guid.NewGuid();
@@ -21,11 +26,17 @@ namespace ControleJogo.Dominio.Amigos.Entities
             this.Nome = Nome;
             this.Email = Email;
             this.Logradouro = Logradouro;
+
+            EmprestimosEfetuados = new List<EmprestimoJogo>();
+        }
+
+        protected Amigo()
+        {
+
         }
 
         public void AlterarEmail(string Email) => this.Email = Email;
         public void AlterarLogradouro(Logradouro Logradouro) => this.Logradouro = Logradouro;
-
 
         public bool EhValido()
         {

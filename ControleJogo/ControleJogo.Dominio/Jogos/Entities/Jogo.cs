@@ -1,7 +1,9 @@
-﻿using ControleJogo.Dominio.Jogos.Validations;
+﻿using ControleJogo.Dominio.Emprestimo.Entities;
+using ControleJogo.Dominio.Jogos.Validations;
 using DomainDrivenDesign.Entities;
 using FluentValidation.Results;
 using System;
+using System.Collections.Generic;
 
 namespace ControleJogo.Dominio.Jogos.Entities
 {
@@ -18,6 +20,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public ValidationResult ValidationResult { get; set; }
         
         public virtual Categoria Categoria { get; private set; }
+        public ICollection<EmprestimoJogo> Emprestados { get; private set; }
 
         public Jogo(string Nome, Guid CategoriaId, int QuantidadeJogos = 1)
         {
@@ -27,6 +30,12 @@ namespace ControleJogo.Dominio.Jogos.Entities
             this.Nome = Nome;
             this.QuantidadeJogos = QuantidadeJogos;
             Status = QuantidadeJogos > 0 ? StatusJogo.Disponivel : StatusJogo.Indisponivel;
+            Emprestados = new List<EmprestimoJogo>();
+        }
+
+        protected Jogo()
+        {
+
         }
 
         public void AlterarNome(string Nome) => this.Nome = Nome;
