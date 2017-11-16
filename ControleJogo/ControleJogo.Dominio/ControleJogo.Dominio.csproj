@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACC1BD23-4D7A-41A0-8403-438818B7297B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ControleJogo.Dominio</RootNamespace>
+    <AssemblyName>ControleJogo.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Amigos\Entities\Amigo.cs" />
+    <Compile Include="Amigos\ObejctValues\Email.cs" />
+    <Compile Include="Amigos\ObejctValues\Estado.cs" />
+    <Compile Include="Amigos\ObejctValues\Logradouro.cs" />
+    <Compile Include="Amigos\Repositories\IAmigoRepository.cs" />
+    <Compile Include="Amigos\Services\AmigoService.cs" />
+    <Compile Include="Amigos\Services\IAmigoService.cs" />
+    <Compile Include="Amigos\Validations\AmigoAptoPersistenciaValidator.cs" />
+    <Compile Include="Amigos\Validations\AmigoEstaConsistenteValidator.cs" />
+    <Compile Include="Amigos\Validations\EmailEstaConsistenteValidator.cs" />
+    <Compile Include="Amigos\Validations\LogradouroEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Entities\Categoria.cs" />
+    <Compile Include="Jogos\Entities\Jogo.cs" />
+    <Compile Include="Jogos\Entities\StatusJogo.cs" />
+    <Compile Include="Jogos\Repositories\ICategoriaRepository.cs" />
+    <Compile Include="Jogos\Repositories\IJogoRepository.cs" />
+    <Compile Include="Jogos\Services\CategoriaService.cs" />
+    <Compile Include="Jogos\Services\ICategoriaService.cs" />
+    <Compile Include="Jogos\Services\IJogoService.cs" />
+    <Compile Include="Jogos\Services\JogoService.cs" />
+    <Compile Include="Jogos\Validations\CategoriaEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\JogoEstaConsistenteValidator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DomainDrivenDesign\DomainDrivenDesign.csproj">
+      <Project>{2b8950bd-15d3-4c66-9371-fe528e3df7ca}</Project>
+      <Name>DomainDrivenDesign</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
