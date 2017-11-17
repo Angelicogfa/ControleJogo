@@ -14,6 +14,8 @@ using ControleJogo.Dominio.Amigos.Services;
 using ControleJogo.Dominio.Emprestimo.Events;
 using ControleJogo.Aplicacao.EmailSenderAppService;
 using ControleJogo.Infra.Notification.Email;
+using ControleJogo.Infra.Identity.Storage;
+using ControleJogo.Infra.Identity.Managers;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -51,6 +53,13 @@ namespace ControleJogo.Infra.IoC
             //External Services
             //Email
             container.Register<IEmailSender, EmailSender>(Lifestyle.Scoped);
+
+
+            //Identity
+            container.Register<UserContext>(Lifestyle.Scoped);
+            container.Register<UserStore>(Lifestyle.Scoped);
+            container.Register<CustomUserManager>(Lifestyle.Scoped);
+            container.Register<SingInUserManager>(Lifestyle.Scoped);
         }
     }
 }

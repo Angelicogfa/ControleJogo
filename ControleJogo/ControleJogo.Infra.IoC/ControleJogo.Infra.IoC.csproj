@@ -63,6 +63,10 @@
       <Project>{d04f4502-1e4b-431b-98fd-1d7b695bed4c}</Project>
       <Name>ControleJogo.Infra.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ControleJogo.Infra.Identity\ControleJogo.Infra.Identity.csproj">
+      <Project>{cf5b0b89-84f7-4541-9439-460430c74793}</Project>
+      <Name>ControleJogo.Infra.Identity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControleJogo.Infra.Notification\ControleJogo.Infra.Notification.csproj">
       <Project>{21BD4A60-5AD2-43F7-B320-83C1D1E0CEB0}</Project>
       <Name>ControleJogo.Infra.Notification</Name>

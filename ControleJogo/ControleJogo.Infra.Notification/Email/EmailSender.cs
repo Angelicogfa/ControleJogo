@@ -31,7 +31,7 @@ namespace ControleJogo.Infra.Notification.Email
             }
             catch (System.Exception ex)
             {
-                //Todo Log
+                return Task.FromException(ex);
             }
         }
     }
