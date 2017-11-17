@@ -53,6 +53,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Bairro)
         </dt>
 
@@ -90,10 +98,15 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Remover" class="btn btn-danger" />
+            </div>
         </div>
     }
 </div>
 
-@Html.ActionLink("Voltar à listagem", "Index")
+<br/>
+<div>
+    @Html.ActionLink("Voltar à listagem", "Index", "Amigos", htmlAttributes: new { @class = "btn btn-default" })
+</div>

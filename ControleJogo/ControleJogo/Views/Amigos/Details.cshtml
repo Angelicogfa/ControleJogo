@@ -35,11 +35,27 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CEP)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.CEP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
         </dd>
 
         <dt>
@@ -75,13 +91,21 @@
         </dd>
 
     </dl>
-</div>
-<p>
+
     @{
         if (Request.IsAuthenticated)
         {
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+                </div>
+            </div>
         }
     }
-    @Html.ActionLink("Voltar à listagem", "Index")
-</p>
+
+</div>
+
+
+<div>
+    @Html.ActionLink("Voltar à listagem", "Index", "Amigos", htmlAttributes: new { @class = "btn btn-default" })
+</div>

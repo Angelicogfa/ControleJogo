@@ -78,13 +78,13 @@
                 </td>
                 <td style="width:150px;">
                     <a href="@Url.Action("Details", "Amigos", new { id = item.Id })" data-modal="" class="btn btn-default">
-                        <span title="Editar" class="glyphicon glyphicon-pencil"></span>
+                        <span title="Editar" class="glyphicon glyphicon-info-sign"></span>
                     </a>
                     @{
                         if (Request.IsAuthenticated)
                         {
                             <a href="@Url.Action("Edit", "Amigos", new { id = item.Id })" data-modal="" class="btn btn-info">
-                                <span title="Detalhes" class="glyphicon glyphicon-info-sign"></span>
+                                <span title="Detalhes" class="glyphicon glyphicon-pencil"></span>
                             </a>
                             <a href="@Url.Action("Delete", "Amigos", new { id = item.Id })" data-modal="" class="btn btn-danger">
                                 <span title="Remover" class="glyphicon glyphicon-trash"></span>
