@@ -18,7 +18,11 @@ namespace ControleJogo.Dominio.Jogos.Validations
                 .NotNull().WithMessage("Categoria não informada!")
                 .Must(t => t != Guid.Empty).WithMessage("Categoria não informada!");
 
-            RuleFor(t => t.Status)
+            RuleFor(t => t.ConsoleId)
+                .NotNull().WithMessage("Console não informado!")
+                .Must(t => t != Guid.Empty).WithMessage("Console não informado!");
+
+            RuleFor(t => t.Indisponivel)
                 .IsInEnum().WithMessage("Status informado inválido!");
 
             RuleFor(t => t.QuantidadeJogos)

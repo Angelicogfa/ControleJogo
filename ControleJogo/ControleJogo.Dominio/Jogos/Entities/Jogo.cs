@@ -12,8 +12,10 @@ namespace ControleJogo.Dominio.Jogos.Entities
     {
         public string Nome { get; private set; }
         public Guid CategoriaId { get; private set; }
+        public Guid ConsoleId { get; private set; }
         public DateTime DataCadastro { get; private set; }
-        public StatusJogo Status { get; private set; }
+        public bool Indisponivel { get; private set; }
+        public byte[] FotoJogo { get; private set; }
         public int QuantidadeJogos { get; private set; }
 
         public int CopiasDisponiveis
@@ -27,6 +29,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public ValidationResult ValidationResult { get; set; }
         
         public virtual Categoria Categoria { get; private set; }
+        public virtual Console Console { get; private set; }
         public ICollection<EmprestimoJogo> Emprestados { get; private set; }
 
         public Jogo(string Nome, Guid CategoriaId, int QuantidadeJogos = 1)
@@ -36,7 +39,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
             DataCadastro = DateTime.Now;
             this.Nome = Nome;
             this.QuantidadeJogos = QuantidadeJogos;
-            Status = QuantidadeJogos > 0 ? StatusJogo.Disponivel : StatusJogo.Indisponivel;
+            Indisponivel = QuantidadeJogos > 0 ? false : true;
             Emprestados = new List<EmprestimoJogo>();
         }
 
@@ -47,6 +50,8 @@ namespace ControleJogo.Dominio.Jogos.Entities
 
         public void AlterarNome(string Nome) => this.Nome = Nome;
         public void AlterarCategoria(Guid CategoriaId) => this.CategoriaId = CategoriaId;
+
+        public void AlterarFotoJogo(byte[] FotoJogo) => this.FotoJogo = FotoJogo;
 
         public EmprestimoJogo NovoEmprestimo(Guid Amigo)
         {

@@ -14,6 +14,11 @@ namespace ControleJogo.Infra.Data.Repositories
         {
         }
 
+        public Task<bool> NomeEhUnicoPorConsole(Guid jogoId, Guid consoleId, string nome)
+        {
+            return _ctx.Jogos.Where(t => t.ConsoleId != consoleId && t.Id != jogoId).AnyAsync(t => t.Nome.Equals(nome));
+        }
+
         public override async Task<Jogo> ProcurarPeloId(Guid Id)
         {
             var jogo = await (from jogos in _ctx.Jogos

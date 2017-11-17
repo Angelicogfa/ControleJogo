@@ -22,11 +22,17 @@ namespace ControleJogo.Infra.Data.Contexto.Mapping
             Property(t => t.CategoriaId)
                 .IsRequired();
 
+            Property(t => t.ConsoleId)
+               .IsRequired();
+
             Property(t => t.DataCadastro)
                 .IsRequired();
 
-            Property(t => t.Status)
+            Property(t => t.Indisponivel)
                 .IsRequired();
+
+            Property(t => t.FotoJogo)
+                .IsOptional();
 
             Property(t => t.QuantidadeJogos)
                 .IsRequired();
@@ -36,6 +42,11 @@ namespace ControleJogo.Infra.Data.Contexto.Mapping
             HasRequired(t => t.Categoria)
                 .WithMany(t => t.Jogos)
                 .HasForeignKey(t => t.CategoriaId)
+                .WillCascadeOnDelete(false);
+
+            HasRequired(t => t.Console)
+                .WithMany(t => t.Jogos)
+                .HasForeignKey(t => t.ConsoleId)
                 .WillCascadeOnDelete(false);
         }
     }

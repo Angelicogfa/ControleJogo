@@ -59,15 +59,23 @@
     <Compile Include="Emprestimo\Sagas\EmprestarJogosSaga.cs" />
     <Compile Include="Emprestimo\Sagas\SagaBase.cs" />
     <Compile Include="Jogos\Entities\Categoria.cs" />
+    <Compile Include="Jogos\Entities\Console.cs" />
     <Compile Include="Jogos\Entities\Jogo.cs" />
     <Compile Include="Jogos\Entities\StatusJogo.cs" />
     <Compile Include="Jogos\Repositories\ICategoriaRepository.cs" />
+    <Compile Include="Jogos\Repositories\IConsoleRepository.cs" />
     <Compile Include="Jogos\Repositories\IJogoRepository.cs" />
     <Compile Include="Jogos\Services\CategoriaService.cs" />
+    <Compile Include="Jogos\Services\ConsoleService.cs" />
     <Compile Include="Jogos\Services\ICategoriaService.cs" />
+    <Compile Include="Jogos\Services\IConsoleService.cs" />
     <Compile Include="Jogos\Services\IJogoService.cs" />
     <Compile Include="Jogos\Services\JogoService.cs" />
+    <Compile Include="Jogos\Validations\CategoriaAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\CategoriaEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\ConsoleAptoPersistenciaValidator.cs" />
+    <Compile Include="Jogos\Validations\ConsoleEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\JogoEstaAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\JogoEstaConsistenteValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

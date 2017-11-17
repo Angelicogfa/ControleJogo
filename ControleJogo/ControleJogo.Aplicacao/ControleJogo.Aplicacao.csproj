@@ -30,14 +30,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailSenderAppService\EmprestimoJogoEventHandler.cs" />
+    <Compile Include="Mappers\AutoMapperInicialize.cs" />
+    <Compile Include="Mappers\Configure\LogradouroResolver.cs" />
+    <Compile Include="Mappers\DomainToViewModelProfile.cs" />
+    <Compile Include="Mappers\ViewModelToDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AmigoAppService.cs" />
+    <Compile Include="Services\AppServiceBase.cs" />
+    <Compile Include="Services\CategoriaAppService.cs" />
+    <Compile Include="Services\ConsoleAppService.cs" />
+    <Compile Include="Services\IAmigoAppService.cs" />
+    <Compile Include="Services\ICategoriaAppService.cs" />
+    <Compile Include="Services\IConsoleAppService.cs" />
+    <Compile Include="Services\IJogoAppService.cs" />
+    <Compile Include="Services\JogoAppService.cs" />
+    <Compile Include="ViewModels\AmigoViewModel.cs" />
+    <Compile Include="ViewModels\CategoriaViewModel.cs" />
+    <Compile Include="ViewModels\ConsoleViewModel.cs" />
+    <Compile Include="ViewModels\Estado.cs" />
+    <Compile Include="ViewModels\JogoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControleJogo.Dominio\ControleJogo.Dominio.csproj">
@@ -60,9 +87,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

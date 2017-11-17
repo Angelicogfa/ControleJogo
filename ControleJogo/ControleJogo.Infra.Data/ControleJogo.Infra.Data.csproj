@@ -51,6 +51,7 @@
     <Compile Include="Contexto\ControleJogoInicializer.cs" />
     <Compile Include="Contexto\Mapping\AmigoMapping.cs" />
     <Compile Include="Contexto\Mapping\CategoriaMapping.cs" />
+    <Compile Include="Contexto\Mapping\ConsoleMapping.cs" />
     <Compile Include="Contexto\Mapping\EmailMapping.cs" />
     <Compile Include="Contexto\Mapping\EmprestimoJogoMapping.cs" />
     <Compile Include="Contexto\Mapping\JogoMapping.cs" />
@@ -62,6 +63,10 @@
     <Compile Include="Migrations\201711161927429_Script00001.cs" />
     <Compile Include="Migrations\201711161927429_Script00001.Designer.cs">
       <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171146320_Script00002.cs" />
+    <Compile Include="Migrations\201711171146320_Script00002.Designer.cs">
+      <DependentUpon>201711171146320_Script00002.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711161927429_Script00001.resx">
       <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171146320_Script00002.resx">
+      <DependentUpon>201711171146320_Script00002.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
