@@ -6,7 +6,7 @@ namespace ControleJogo.Aplicacao.InputModel
     public class AmigoViewModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required(ErrorMessage = "{0} não informado!")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "O {2} deve ter de {1} a {0} caractéres")]
@@ -17,6 +17,7 @@ namespace ControleJogo.Aplicacao.InputModel
         [StringLength(120, ErrorMessage = "O {0} deve ter até {1} caractéres")]
         public string Email { get; set; }
 
+        [ScaffoldColumn(false)]
         public DateTime DataCadastro { get; set; }
 
         [Required(ErrorMessage = "{0} não informado!")]
@@ -25,6 +26,10 @@ namespace ControleJogo.Aplicacao.InputModel
         [Required(ErrorMessage = "{0} não informado!")]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "O {0} deve ter de {1} caractéres")]
         public string CEP { get;  set; }
+
+        [Required(ErrorMessage = "{0} não informado!")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "O {0} deve ter de {1} caractéres")]
+        public string Cidade { get; set; }
 
         [Required(ErrorMessage = "{0} não informado!")]
         [StringLength(50, ErrorMessage = "O {0} deve ter de {1} a {2} caractéres")]

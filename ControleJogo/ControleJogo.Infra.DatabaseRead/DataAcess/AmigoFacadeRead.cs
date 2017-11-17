@@ -10,21 +10,21 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
 {
     public class AmigoFacadeRead : FacadeRead, IAmigoDataRead
     {
-        public Task<AmigoDTO> BuscarPeloId(Guid Id)
+        public async Task<AmigoDTO> BuscarPeloId(Guid Id)
         {
             using (IDbConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
-                return conn.QueryFirstAsync<AmigoDTO>("Select * from Amigo where Id = @Id", new { Id = Id});
+                return await conn.QueryFirstAsync<AmigoDTO>("Select * from Amigo where Id = @Id", new { Id = Id});
             }
         }
 
-        public Task<IEnumerable<AmigoDTO>> BuscarTodos()
+        public async Task<IEnumerable<AmigoDTO>> BuscarTodos()
         {
             using (IDbConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
-                return conn.QueryAsync<AmigoDTO>("Select * from Amigo");
+                return await conn.QueryAsync<AmigoDTO>("Select * from Amigo");
             }
         }
     }

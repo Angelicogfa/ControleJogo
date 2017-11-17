@@ -17,6 +17,7 @@ namespace ControleJogo.Aplicacao.Mappers
             CreateMap<Amigo, AmigoViewModel>()
                 .ForMember(t => t.Estado, opt => opt.MapFrom(t => t.Logradouro.Estado))
                 .ForMember(t => t.CEP, opt => opt.MapFrom(t => t.Logradouro.CEP))
+                .ForMember(t => t.Cidade, opt => opt.MapFrom(t => t.Logradouro.Cidade))
                 .ForMember(t => t.Bairro, opt => opt.MapFrom(t => t.Logradouro.Bairro))
                 .ForMember(t => t.Endereco, opt => opt.MapFrom(t => t.Logradouro.Endereco))
                 .ForMember(t => t.Numero, opt => opt.MapFrom(t => t.Logradouro.Numero))

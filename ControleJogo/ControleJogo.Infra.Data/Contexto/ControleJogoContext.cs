@@ -6,6 +6,7 @@ using FluentValidation.Results;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ControleJogo.Infra.Data.Contexto
 {
@@ -40,6 +41,9 @@ namespace ControleJogo.Infra.Data.Contexto
             modelBuilder.Ignore<ValidationResult>();
             modelBuilder.Ignore<ValidationFailure>();
 
+            modelBuilder.Properties<DateTime>().Configure(t => t.HasColumnType("datetime"));
+            modelBuilder.Properties<string>().Configure(t => t.HasColumnType("varchar"));
+
             //Complex type
             modelBuilder.Configurations.Add(new EmailMapping());
             modelBuilder.Configurations.Add(new LogradouroMapping());
@@ -63,6 +67,16 @@ namespace ControleJogo.Infra.Data.Contexto
             }
 
             return base.SaveChanges();
+        }
+        public override Task<int> SaveChangesAsync()
+        {
+            foreach (var item in ChangeTracker.Entries().ToList().Where(t => t.Entity.GetType().GetProperty("DataCadastro") != null))
+            {
+                if (item.State == EntityState.Added)
+                    item.Property("DataCadastro").CurrentValue = DateTime.Now;
+            }
+
+            return base.SaveChangesAsync();
         }
     }
 }

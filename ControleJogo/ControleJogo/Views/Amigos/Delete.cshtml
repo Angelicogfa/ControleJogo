@@ -1,0 +1,99 @@
+﻿@model ControleJogo.Aplicacao.InputModel.AmigoViewModel
+
+@{
+    ViewBag.Title = "Remover";
+}
+
+<h2>Remover</h2>
+
+<h3>Deseja realmente remover seu amigo?</h3>
+<div>
+    <h4>Amigo</h4>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DataCadastro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CEP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CEP)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bairro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Endereco)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Numero)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Numero)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Complemento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Complemento)
+            </dd>
+
+        </dl>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+@Html.ActionLink("Voltar à listagem", "Index")

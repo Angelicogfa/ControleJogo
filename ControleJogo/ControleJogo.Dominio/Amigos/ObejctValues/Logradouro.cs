@@ -8,6 +8,7 @@ namespace ControleJogo.Dominio.Amigos.ObejctValues
     {
         public Estado Estado { get; private set; }
         public string CEP { get; private set; }
+        public string Cidade { get; private set; }
         public string Bairro { get; private set; }
         public string Endereco { get; private set; }
         public string Numero { get; private set; }
@@ -21,10 +22,11 @@ namespace ControleJogo.Dominio.Amigos.ObejctValues
 
         }
 
-        public Logradouro(Estado estado, string cep, string bairro, string endereco, string numero, string complemento)
+        public Logradouro(Estado estado, string cep, string cidade, string bairro, string endereco, string numero, string complemento)
         {
             Estado = estado;
             CEP = cep;
+            Cidade = cidade;
             Bairro = bairro;
             Endereco = endereco;
             Numero = numero;
@@ -41,6 +43,7 @@ namespace ControleJogo.Dominio.Amigos.ObejctValues
         {
             return Estado == logradouro.Estado &&
                   CEP == logradouro.CEP &&
+                  Cidade == logradouro.Cidade &&
                   Bairro == logradouro.Bairro &&
                   Endereco == logradouro.Endereco &&
                   Numero == logradouro.Numero &&
@@ -52,6 +55,7 @@ namespace ControleJogo.Dominio.Amigos.ObejctValues
             var hashCode = -1107735805;
             hashCode = hashCode * -1521134295 + Estado.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CEP);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cidade);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Bairro);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Numero);

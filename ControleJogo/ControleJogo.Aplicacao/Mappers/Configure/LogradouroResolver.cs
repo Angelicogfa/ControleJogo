@@ -11,7 +11,7 @@ namespace ControleJogo.Aplicacao.Mappers.Configure
         public Logradouro Resolve(AmigoViewModel source, Amigo destination, Logradouro destMember, ResolutionContext context)
         {
             destMember = new Logradouro((Dominio.Amigos.ObejctValues.Estado)Enum.ToObject(typeof(Dominio.Amigos.ObejctValues.Estado),
-                (int) source.Estado), source.CEP, source.Bairro, source.Endereco, source.Numero, source.Complemento);
+                (int) source.Estado), source.CEP, source.Cidade, source.Bairro, source.Endereco, source.Numero, source.Complemento);
             return destMember;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
@@ -23,15 +24,27 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
 
         }
 
+        [Display(Name ="Id")]
         public Guid Id { get; private set; }
+        [Display(Name = "Nome")]
         public string Nome { get; private set; }
+        [Display(Name = "Email")]
         public string Email { get; private set; }
+        [Display(Name = "Data Cadastro")]
         public DateTime DataCadastro { get; private set; }
+        [Display(Name = "Estado")]
         public Estado Estado { get;  private set; }
-        public string CEP { get;  private set; }
+        [Display(Name = "CEP")]
+        public string CEP {get;  private set; }
+        [Display(Name = "Cidade")]
+        public string Cidade { get; set; }
+        [Display(Name = "Bairro")]
         public string Bairro { get;  private set; }
+        [Display(Name = "Endereço")]
         public string Endereco { get;  private set; }
+        [Display(Name = "Número")]
         public string Numero { get;  private set; }
+        [Display(Name = "Complemento")]
         public string Complemento { get;  private set; }
     }
 }

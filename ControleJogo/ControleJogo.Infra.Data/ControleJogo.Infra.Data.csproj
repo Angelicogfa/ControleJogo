@@ -60,6 +60,14 @@
     <Compile Include="Migrations\201711171721379_ScriptInicial.Designer.cs">
       <DependentUpon>201711171721379_ScriptInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711171810496_Script00001.cs" />
+    <Compile Include="Migrations\201711171810496_Script00001.Designer.cs">
+      <DependentUpon>201711171810496_Script00001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171834005_Script00002.cs" />
+    <Compile Include="Migrations\201711171834005_Script00002.Designer.cs">
+      <DependentUpon>201711171834005_Script00002.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AmigoRepository.cs" />
@@ -87,6 +95,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711171721379_ScriptInicial.resx">
       <DependentUpon>201711171721379_ScriptInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171810496_Script00001.resx">
+      <DependentUpon>201711171810496_Script00001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171834005_Script00002.resx">
+      <DependentUpon>201711171834005_Script00002.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,10 +16,10 @@ namespace ControleJogo.Infra.Data.Contexto.Mapping
                 .HasMaxLength(9)
                 .HasColumnName("CEP");
 
-            Property(t => t.CEP)
+            Property(t => t.Cidade)
                 .IsRequired()
-                .HasMaxLength(9)
-                .HasColumnName("CEP");
+                .HasMaxLength(50)
+                .HasColumnName("Cidade");
 
             Property(t => t.Bairro)
                .IsRequired()
