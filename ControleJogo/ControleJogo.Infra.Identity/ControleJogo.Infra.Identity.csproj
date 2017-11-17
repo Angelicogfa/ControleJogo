@@ -82,6 +82,7 @@
     <Compile Include="Storage\UserContextHistory.cs" />
     <Compile Include="Storage\UserStore.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711171013317_ScriptInicial.resx">

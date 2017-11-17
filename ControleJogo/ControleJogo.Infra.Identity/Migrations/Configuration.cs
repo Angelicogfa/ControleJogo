@@ -1,5 +1,6 @@
 namespace ControleJogo.Infra.Identity.Migrations
 {
+    using ControleJogo.Infra.Identity.Managers;
     using ControleJogo.Infra.Identity.Storage;
     using System.Data.Entity.Migrations;
 
@@ -13,10 +14,17 @@ namespace ControleJogo.Infra.Identity.Migrations
 
         protected override void Seed(UserContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            User user = new User() { Email = "master@gmail.com", UserName = "master" };
+            using (CustomUserManager manager = new CustomUserManager(new UserStore(new UserContext())))
+            {
+                var tarefa = manager.FindByEmailAsync(user.Email);
+                tarefa.Wait();
+                if(tarefa.Result == null)
+                {
+                    var result = manager.CreateAsync(user, "Master123#");
+                    result.Wait();
+                }
+            }
         }
     }
 }
