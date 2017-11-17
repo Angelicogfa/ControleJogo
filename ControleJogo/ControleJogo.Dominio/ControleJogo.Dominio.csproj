@@ -49,6 +49,7 @@
     <Compile Include="Amigos\Services\IAmigoService.cs" />
     <Compile Include="Amigos\Validations\AmigoAptoPersistenciaValidator.cs" />
     <Compile Include="Amigos\Validations\AmigoEstaConsistenteValidator.cs" />
+    <Compile Include="Amigos\Validations\AmigoPodeSerExcluidoApenasSeNaoTiverEmprestimosValidator.cs" />
     <Compile Include="Amigos\Validations\EmailEstaConsistenteValidator.cs" />
     <Compile Include="Amigos\Validations\LogradouroEstaConsistenteValidator.cs" />
     <Compile Include="Emprestimo\Commands\NovoEmprestimoCommand.cs" />

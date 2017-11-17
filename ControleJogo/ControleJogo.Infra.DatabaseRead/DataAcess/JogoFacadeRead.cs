@@ -14,6 +14,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
         {
             using (IDbConnection conn = new SqlConnection(conexao))
             {
+                conn.Open();
                 return conn.QueryFirstAsync<JogoDTO>("Select * from Jogo where Id = @Id", new { Id = Id });
             }
         }
@@ -22,6 +23,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
         {
             using (IDbConnection conn = new SqlConnection(conexao))
             {
+                conn.Open();
                 return conn.QueryAsync<JogoDTO>("Select * from Console");
             }
         }

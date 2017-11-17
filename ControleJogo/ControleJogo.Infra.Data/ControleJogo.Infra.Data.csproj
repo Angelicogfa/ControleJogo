@@ -56,17 +56,9 @@
     <Compile Include="Contexto\Mapping\EmprestimoJogoMapping.cs" />
     <Compile Include="Contexto\Mapping\JogoMapping.cs" />
     <Compile Include="Contexto\Mapping\LogradouroMapping.cs" />
-    <Compile Include="Migrations\201711161840044_ScriptInicial.cs" />
-    <Compile Include="Migrations\201711161840044_ScriptInicial.Designer.cs">
-      <DependentUpon>201711161840044_ScriptInicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711161927429_Script00001.cs" />
-    <Compile Include="Migrations\201711161927429_Script00001.Designer.cs">
-      <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711171146320_Script00002.cs" />
-    <Compile Include="Migrations\201711171146320_Script00002.Designer.cs">
-      <DependentUpon>201711171146320_Script00002.cs</DependentUpon>
+    <Compile Include="Migrations\201711171721379_ScriptInicial.cs" />
+    <Compile Include="Migrations\201711171721379_ScriptInicial.Designer.cs">
+      <DependentUpon>201711171721379_ScriptInicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,14 +85,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711161840044_ScriptInicial.resx">
-      <DependentUpon>201711161840044_ScriptInicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711161927429_Script00001.resx">
-      <DependentUpon>201711161927429_Script00001.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711171146320_Script00002.resx">
-      <DependentUpon>201711171146320_Script00002.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711171721379_ScriptInicial.resx">
+      <DependentUpon>201711171721379_ScriptInicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ControleJogo.Infra.DatabaseRead.OutputModel.AmigoDTO>
+
+@{
+    ViewBag.Title = "Amigos";
+}
+
+<h2>Amigos</h2>
+
+@{
+    if (Request.IsAuthenticated)
+    {
+        <p>
+            @Html.ActionLink("Novo Amigo", "Create")
+        </p>
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complemento)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complemento)
+            </td>
+            <td>
+                @Html.ActionLink("Detalhe", "Details", new { id = item.Id })
+                @{
+                    if (Request.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Remover", "Delete", new { id = item.Id })
+                    }
+                }
+            </td>
+        </tr>
+     }
+
+</table>

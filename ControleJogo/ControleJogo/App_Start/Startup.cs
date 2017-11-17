@@ -15,7 +15,7 @@ namespace ControleJogo
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new Microsoft.Owin.PathString(""),
+                LoginPath = new Microsoft.Owin.PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider()
             });
 

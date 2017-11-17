@@ -2,7 +2,7 @@
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
-    public class JogoDTO
+    public class JogoDTO : IOutputModel
     {
         public JogoDTO(Guid id, string nome, Guid categoriaId, Guid consoleId, bool indisponivel, byte[] fotoJogo, int quantidadeJogos)
         {

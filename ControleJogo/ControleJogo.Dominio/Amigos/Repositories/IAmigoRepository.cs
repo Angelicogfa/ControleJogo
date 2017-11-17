@@ -8,5 +8,6 @@ namespace ControleJogo.Dominio.Amigos.Repositories
     public interface IAmigoRepository : IRepository<Amigo, Guid>
     {
         Task<bool> EmailEhUnico(Guid AmigoId, string Email);
+        Task<bool> PossuiEmprestimos(Guid id);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
-    public class AmigoDTO
+    public class AmigoDTO : IOutputModel
     {
         public AmigoDTO(Guid id, string nome, string email, DateTime dataCadastro, Estado estado, string cEP, string bairro, string endereco, string numero, string complemento)
         {

@@ -2,7 +2,7 @@
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
-    public class CategoriaDTO
+    public class CategoriaDTO : IOutputModel
     {
         public CategoriaDTO(Guid id, string descricao)
         {

@@ -2,7 +2,7 @@
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
-    public class ConsoleDTO
+    public class ConsoleDTO : IOutputModel
     {
         public ConsoleDTO(Guid id, string descricao)
         {

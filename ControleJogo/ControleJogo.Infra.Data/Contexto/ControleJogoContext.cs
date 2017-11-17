@@ -13,16 +13,24 @@ namespace ControleJogo.Infra.Data.Contexto
     {
         public ControleJogoContext() : base("ConnDB")
         {
-
+            
         }
 
         static ControleJogoContext() => Database.SetInitializer(new ControleJogoInicializer());
 
-        public DbSet<Amigo> Amigos { get; private set; }
-        public DbSet<Jogo> Jogos { get; private set; }
-        public DbSet<Categoria> Categorias { get; private set; }
-        public DbSet<Dominio.Jogos.Entities.Console> Consoles { get; private set; }
-        public DbSet<EmprestimoJogo> Emprestimos { get; private set; }
+        public static void Inicialize()
+        {
+            using (ControleJogoContext ctx = new ControleJogoContext())
+            {
+                ctx.Database.Initialize(false);
+            }
+        }
+
+        public DbSet<Amigo> Amigos { get; set; }
+        public DbSet<Jogo> Jogos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Dominio.Jogos.Entities.Console> Consoles { get; set; }
+        public DbSet<EmprestimoJogo> Emprestimos { get;  set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

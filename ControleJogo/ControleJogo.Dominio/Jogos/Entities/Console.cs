@@ -17,6 +17,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public Console(string Descricao)
         {
             Id = Guid.NewGuid();
+            this.Descricao = Descricao;
             DataCadastro = DateTime.Now;
             Jogos = new List<Jogo>();
         }

@@ -32,10 +32,11 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public virtual Console Console { get; private set; }
         public ICollection<EmprestimoJogo> Emprestados { get; private set; }
 
-        public Jogo(string Nome, Guid CategoriaId, int QuantidadeJogos = 1)
+        public Jogo(string Nome, Guid CategoriaId, Guid ConsoleId, int QuantidadeJogos = 1)
         {
             Id = Guid.NewGuid();
             this.CategoriaId = CategoriaId;
+            this.ConsoleId = ConsoleId;
             DataCadastro = DateTime.Now;
             this.Nome = Nome;
             this.QuantidadeJogos = QuantidadeJogos;

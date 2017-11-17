@@ -18,5 +18,10 @@ namespace ControleJogo.Infra.Data.Repositories
         {
             return !(await _ctx.Amigos.Where(t => t.Id != AmigoId).AnyAsync(t => t.Email.Value.Equals(Email)));
         }
+
+        public Task<bool> PossuiEmprestimos(Guid id)
+        {
+            return _ctx.Emprestimos.Where(t => t.AmigoId == id).AnyAsync();
+        }
     }
 }

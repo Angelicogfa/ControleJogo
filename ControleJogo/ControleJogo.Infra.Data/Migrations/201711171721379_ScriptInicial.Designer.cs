@@ -13,12 +13,12 @@ namespace ControleJogo.Infra.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201711161840044_ScriptInicial"; }
+            get { return "201711171721379_ScriptInicial"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

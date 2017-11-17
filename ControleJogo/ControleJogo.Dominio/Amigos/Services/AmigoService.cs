@@ -35,5 +35,17 @@ namespace ControleJogo.Dominio.Amigos.Services
 
             return obj = base.Atualizar(obj);
         }
+
+        public override Amigo Remover(Amigo obj)
+        {
+            if (!obj.EhValido())
+                return obj;
+
+            obj.ValidationResult = new AmigoPodeSerExcluidoApenasSeNaoTiverEmprestimosValidator((IAmigoRepository)_repository).Validate(obj);
+            if (!obj.ValidationResult.IsValid)
+                return obj;
+
+            return obj = base.Remover(obj);
+        }
     }
 }

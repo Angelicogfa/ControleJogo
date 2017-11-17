@@ -1,7 +1,9 @@
 ﻿using ControleJogo.Infra.Identity.Managers;
 using ControleJogo.Infra.Identity.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ControleJogo.Controllers
@@ -16,6 +18,14 @@ namespace ControleJogo.Controllers
         {
             this.customUserManager = customUserManager;
             _signInManager = singInUserManager;
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
 
         [AllowAnonymous]
@@ -44,6 +54,14 @@ namespace ControleJogo.Controllers
                     ModelState.AddModelError("", "Login ou Senha incorretos.");
                     return View(model);
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

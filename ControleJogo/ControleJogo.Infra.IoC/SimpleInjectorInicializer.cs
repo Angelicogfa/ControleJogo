@@ -18,6 +18,7 @@ using ControleJogo.Infra.Identity.Storage;
 using ControleJogo.Infra.Identity.Managers;
 using ControleJogo.Aplicacao.Services;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
+using ControleJogo.Infra.Data.Contexto;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -26,7 +27,8 @@ namespace ControleJogo.Infra.IoC
         public static void Inicialize(Container container)
         {
             //Contexto
-            container.Register<Data.Contexto.ControleJogoContext>(Lifestyle.Scoped);
+            container.Register<ControleJogoContext>(Lifestyle.Scoped);
+            ControleJogoContext.Inicialize();
 
             //UnitOfWork
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
@@ -68,11 +70,14 @@ namespace ControleJogo.Infra.IoC
             container.Register<IJogoDataRead, JogoFacadeRead>(Lifestyle.Scoped);
             container.Register<IAmigoDataRead, AmigoFacadeRead>(Lifestyle.Scoped);
 
+
             //Identity
             container.Register<UserContext>(Lifestyle.Scoped);
             container.Register<UserStore>(Lifestyle.Scoped);
             container.Register<CustomUserManager>(Lifestyle.Scoped);
             container.Register<SingInUserManager>(Lifestyle.Scoped);
+
+            UserContext.Inicialize();
         }
     }
 }
