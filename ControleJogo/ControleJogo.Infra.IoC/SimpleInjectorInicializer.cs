@@ -17,6 +17,7 @@ using ControleJogo.Infra.Notification.Email;
 using ControleJogo.Infra.Identity.Storage;
 using ControleJogo.Infra.Identity.Managers;
 using ControleJogo.Aplicacao.Services;
+using ControleJogo.Infra.DatabaseRead.DataAcess;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -56,11 +57,16 @@ namespace ControleJogo.Infra.IoC
             container.Register<IConsoleAppService, ConsoleAppService>(Lifestyle.Scoped);
             container.Register<IJogoAppService, JogoAppService>(Lifestyle.Scoped);
             container.Register<IAmigoAppService, AmigoAppService>(Lifestyle.Scoped);
-            
 
             //External Services
             //Email
             container.Register<IEmailSender, EmailSender>(Lifestyle.Scoped);
+
+            //DatabaseRead
+            container.Register<ICategoriaDataRead, CategoriaFacadeRead>(Lifestyle.Scoped);
+            container.Register<IConsoleDataRead, ConsoleFacadeRead>(Lifestyle.Scoped);
+            container.Register<IJogoDataRead, JogoFacadeRead>(Lifestyle.Scoped);
+            container.Register<IAmigoDataRead, AmigoFacadeRead>(Lifestyle.Scoped);
 
             //Identity
             container.Register<UserContext>(Lifestyle.Scoped);

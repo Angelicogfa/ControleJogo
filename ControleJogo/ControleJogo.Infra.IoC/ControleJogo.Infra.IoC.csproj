@@ -59,6 +59,10 @@
       <Project>{acc1bd23-4d7a-41a0-8403-438818b7297b}</Project>
       <Name>ControleJogo.Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ControleJogo.Infra.DatabaseRead\ControleJogo.Infra.DatabaseRead.csproj">
+      <Project>{24CB8106-404C-43F9-892D-38FE17F55241}</Project>
+      <Name>ControleJogo.Infra.DatabaseRead</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ControleJogo.Infra.Data\ControleJogo.Infra.Data.csproj">
       <Project>{d04f4502-1e4b-431b-98fd-1d7b695bed4c}</Project>
       <Name>ControleJogo.Infra.Data</Name>
