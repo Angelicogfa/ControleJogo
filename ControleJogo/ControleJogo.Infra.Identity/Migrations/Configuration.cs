@@ -12,17 +12,16 @@ namespace ControleJogo.Infra.Identity.Migrations
             SetHistoryContextFactory("System.Data.SqlClient", (c, s) => new UserContextHistory(c, s));
         }
 
-        protected override void Seed(UserContext context)
+        protected override async void Seed(UserContext context)
         {
             User user = new User() { Email = "master@gmail.com", UserName = "master" };
             using (CustomUserManager manager = new CustomUserManager(new UserStore(new UserContext())))
             {
-                var tarefa = manager.FindByEmailAsync(user.Email);
-                tarefa.Wait();
-                if(tarefa.Result == null)
+                var tarefa = await manager.FindByEmailAsync(user.Email);
+                if(tarefa == null)
                 {
-                    var result = manager.CreateAsync(user, "Master123#");
-                    result.Wait();
+                    var result = await manager.CreateAsync(user, "Master123#");
+
                 }
             }
         }

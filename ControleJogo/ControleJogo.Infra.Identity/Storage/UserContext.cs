@@ -6,5 +6,10 @@
         {
 
         }
+
+        static UserContext()
+        {
+            System.Data.Entity.Database.SetInitializer(new UserContextInicialize());
+        }
     }
 }
