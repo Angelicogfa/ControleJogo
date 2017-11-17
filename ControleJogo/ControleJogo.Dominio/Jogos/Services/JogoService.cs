@@ -3,6 +3,7 @@ using DomainDrivenDesign.Services;
 using System;
 using ControleJogo.Dominio.Jogos.Repositories;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ControleJogo.Dominio.Jogos.Services
 {
@@ -30,6 +31,12 @@ namespace ControleJogo.Dominio.Jogos.Services
 
         public Task<bool> JogoDisponivelParaEmprestimo(Guid JogoId)
         {
+            var jogo = _repository.ProcurarPeloId(JogoId);
+            if (jogo == null)
+                throw new InvalidOperationException($"Jogo não localizado para o Id {JogoId}");
+
+
+            
             return Task.FromResult(true);
         }
     }

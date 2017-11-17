@@ -70,6 +70,7 @@
     <Compile Include="Repositories\EmprestimoJogoRepository.cs" />
     <Compile Include="Repositories\JogoRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="UoW\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

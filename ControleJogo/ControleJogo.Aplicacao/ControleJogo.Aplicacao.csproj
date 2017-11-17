@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C7C4335-CCE4-4472-B138-E020E67D3189}</ProjectGuid>
+    <ProjectGuid>{9AFB8A4F-05FF-4DC4-82B1-E6D29E67DD2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CQRS</RootNamespace>
-    <AssemblyName>CQRS</AssemblyName>
+    <RootNamespace>ControleJogo.Aplicacao</RootNamespace>
+    <AssemblyName>ControleJogo.Aplicacao</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,14 +36,30 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="DomainEvents\DomainEvent.cs" />
-    <Compile Include="Events\Event.cs" />
-    <Compile Include="Messages\Message.cs" />
+    <Compile Include="EmailSenderAppService\EmprestimoJogoEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControleJogo.Dominio\ControleJogo.Dominio.csproj">
+      <Project>{acc1bd23-4d7a-41a0-8403-438818b7297b}</Project>
+      <Name>ControleJogo.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ControleJogo.Infra.Notification\ControleJogo.Infra.Notification.csproj">
+      <Project>{21bd4a60-5ad2-43f7-b320-83c1d1e0ceb0}</Project>
+      <Name>ControleJogo.Infra.Notification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CQRS\CQRS.csproj">
+      <Project>{2C7C4335-CCE4-4472-B138-E020E67D3189}</Project>
+      <Name>CQRS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainDrivenDesign\DomainDrivenDesign.csproj">
+      <Project>{2b8950bd-15d3-4c66-9371-fe528e3df7ca}</Project>
+      <Name>DomainDrivenDesign</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

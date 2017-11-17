@@ -4,6 +4,7 @@ using DomainDrivenDesign.Entities;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ControleJogo.Dominio.Jogos.Entities
 {
@@ -15,7 +16,13 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public StatusJogo Status { get; private set; }
         public int QuantidadeJogos { get; private set; }
 
-        public int CopiasDisponiveis { get;  }
+        public int CopiasDisponiveis
+        {
+            get
+            {
+                return QuantidadeJogos - Emprestados.Where(t => !t.Devolvido).Count();
+            }
+        }
 
         public ValidationResult ValidationResult { get; set; }
         
@@ -35,11 +42,30 @@ namespace ControleJogo.Dominio.Jogos.Entities
 
         protected Jogo()
         {
-
+            Emprestados = new List<EmprestimoJogo>();
         }
 
         public void AlterarNome(string Nome) => this.Nome = Nome;
         public void AlterarCategoria(Guid CategoriaId) => this.CategoriaId = CategoriaId;
+
+        public EmprestimoJogo NovoEmprestimo(Guid Amigo)
+        {
+            if (CopiasDisponiveis == 0)
+                return null;
+
+            return new EmprestimoJogo(Id, Amigo, DateTime.Now.AddDays(7));
+        }
+
+        protected internal bool AdicionarEmprestimo(EmprestimoJogo emprestimo)
+        {
+            if(emprestimo != null && (emprestimo.ValidationResult?.IsValid ?? false))
+            {
+                if(!Emprestados.Contains(emprestimo))
+                    Emprestados.Add(emprestimo);
+                return true;
+            }
+            return false;
+        }
 
         public bool EhValido()
         {

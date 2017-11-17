@@ -53,6 +53,8 @@
     <Compile Include="Amigos\Validations\LogradouroEstaConsistenteValidator.cs" />
     <Compile Include="Emprestimo\Commands\NovoEmprestimoCommand.cs" />
     <Compile Include="Emprestimo\Entities\EmprestimoJogo.cs" />
+    <Compile Include="Emprestimo\Events\EmprestimoEfetuadoEvent.cs" />
+    <Compile Include="Emprestimo\Events\JogoNaoDisponivelEvent.cs" />
     <Compile Include="Emprestimo\Repository\IEmprestimoJogoRepository.cs" />
     <Compile Include="Emprestimo\Sagas\EmprestarJogosSaga.cs" />
     <Compile Include="Emprestimo\Sagas\SagaBase.cs" />
@@ -69,7 +71,9 @@
     <Compile Include="Jogos\Validations\JogoEstaConsistenteValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Emprestimo\Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CQRS\CQRS.csproj">
       <Project>{2c7c4335-cce4-4472-b138-e020e67d3189}</Project>

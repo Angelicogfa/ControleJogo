@@ -1,5 +1,5 @@
 ﻿using CQRS.Commands;
-using FluentValidation.Results;
+using MediatR;
 using System;
 
 namespace ControleJogo.Dominio.Emprestimo.Commands

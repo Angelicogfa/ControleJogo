@@ -10,5 +10,21 @@ namespace ControleJogo.Dominio.Jogos.Services
         public CategoriaService(ICategoriaRepository repository) : base(repository)
         {
         }
+
+        public override Categoria Adicionar(Categoria obj)
+        {
+            if (!obj.EhValido())
+                return obj;
+
+            return obj = base.Adicionar(obj);
+        }
+
+        public override Categoria Atualizar(Categoria obj)
+        {
+            if (!obj.EhValido())
+                return obj;
+
+            return obj = base.Atualizar(obj);
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace ControleJogo.Infra.Data.Repositories
             _ctx.Dispose();
         }
 
-        public Task<T> ProcurarPeloId(A Id)
+        public virtual Task<T> ProcurarPeloId(A Id)
         {
             return _ctx.Set<T>().FindAsync(Id);
         }
