@@ -32,12 +32,14 @@ namespace ControleJogo.Infra.IoC
 
             //Repository
             container.Register<ICategoriaRepository, CategoriaRepository>(Lifestyle.Scoped);
+            container.Register<IConsoleRepository, ConsoleRepository>(Lifestyle.Scoped);
             container.Register<IJogoRepository, JogoRepository>(Lifestyle.Scoped);
             container.Register<IAmigoRepository, AmigoRepository>(Lifestyle.Scoped);
             container.Register<IEmprestimoJogoRepository, EmprestimoJogoRepository>(Lifestyle.Scoped);
 
             //Services
             container.Register<ICategoriaService, CategoriaService>(Lifestyle.Scoped);
+            container.Register<IConsoleService, ConsoleService>(Lifestyle.Scoped);
             container.Register<IJogoService, JogoService>(Lifestyle.Scoped);
             container.Register<IAmigoService, AmigoService>(Lifestyle.Scoped);
 
@@ -54,6 +56,7 @@ namespace ControleJogo.Infra.IoC
             container.Register<IConsoleAppService, ConsoleAppService>(Lifestyle.Scoped);
             container.Register<IJogoAppService, JogoAppService>(Lifestyle.Scoped);
             container.Register<IAmigoAppService, AmigoAppService>(Lifestyle.Scoped);
+            
 
             //External Services
             //Email

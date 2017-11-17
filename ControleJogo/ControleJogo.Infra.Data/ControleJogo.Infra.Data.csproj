@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AmigoRepository.cs" />
     <Compile Include="Repositories\CategoriaRepository.cs" />
+    <Compile Include="Repositories\ConsoleRepository.cs" />
     <Compile Include="Repositories\EmprestimoJogoRepository.cs" />
     <Compile Include="Repositories\JogoRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />

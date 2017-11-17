@@ -7,6 +7,12 @@ namespace ControleJogo.Infra.Identity.Managers
     {
         public CustomUserManager(UserStore store) : base(store)
         {
+            UserValidator = new UserValidator<User, string>(this)
+            {
+                 AllowOnlyAlphanumericUserNames = true,
+                 RequireUniqueEmail = true,
+            };
+
             PasswordValidator = new PasswordValidator()
             {
                 RequireDigit = true, 
@@ -14,6 +20,8 @@ namespace ControleJogo.Infra.Identity.Managers
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+
+            UserLockoutEnabledByDefault = false;
         }
     }
 }
