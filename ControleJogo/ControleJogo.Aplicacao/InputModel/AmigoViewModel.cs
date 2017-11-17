@@ -22,9 +22,10 @@ namespace ControleJogo.Aplicacao.InputModel
 
         [Required(ErrorMessage = "{0} não informado!")]
         public Estado Estado { get;  set; }
-
+        
         [Required(ErrorMessage = "{0} não informado!")]
         [StringLength(9, MinimumLength = 9, ErrorMessage = "O {0} deve ter de {1} caractéres")]
+        [RegularExpression("[0-9]{5}-[0-9]{3}", ErrorMessage = "CEP deve estar no formato XXXXX-XXX")]
         public string CEP { get;  set; }
 
         [Required(ErrorMessage = "{0} não informado!")]

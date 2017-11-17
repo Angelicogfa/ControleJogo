@@ -88,20 +88,19 @@ namespace ControleJogo.Controllers
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(Guid id, AmigoViewModel model)
+        public async Task<ActionResult> DeleteConfirm(Guid id)
         {
-            if (ModelState.IsValid)
+            var model = (await amigoRead.BuscarPeloId(id)).ConvertTo<AmigoViewModel>();
+            model = await amigoAppService.Remover(model);
+
+            if (model.ValidationResult.IsValid)
+                return RedirectToAction("Index");
+
+            foreach (var item in model.ValidationResult.Errors)
             {
-                model = await amigoAppService.Remover(model);
-
-                if (model.ValidationResult.IsValid)
-                    return RedirectToAction("Index");
-
-                foreach (var item in model.ValidationResult.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
+                ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
             }
             return View(model);
         }

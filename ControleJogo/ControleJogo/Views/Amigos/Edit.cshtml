@@ -11,10 +11,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>AmigoViewModel</h4>
+        <h4>Editar Amigo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.DataCadastro)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -42,11 +43,21 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control", @placeholder = "00000-000" } })
                 @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
             </div>
+            <button id="buscarCep" class="btn btn-info" style="align-content:center;" type="button">Buscar CEP</button>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -88,6 +99,37 @@
     </div>
 }
 
+@section scripts{
+    <script type="text/javascript">
+        $('#buscarCep').click(function () {
+            var cep = $('#CEP').val();
+
+            if (cep == null || cep.length != 9) {
+                alert('CEP não informado. CEP com ' + cep.length + ' caracteres');
+                return;
+            }
+
+            cep = cep.replace('-', '');
+
+            var url = 'http://viacep.com.br/ws/' + cep + '/json';
+            $.getJSON(url, function (data) {
+                JSON.parse(JSON.stringify(data), (key, value) => {
+                    if (key == 'logradouro')
+                        $('#Endereco').val(value);
+                    else if (key == 'complemento')
+                        $('#Complemento').val(value);
+                    else if (key == 'bairro')
+                        $('#Bairro').val(value);
+                    else if (key == 'uf')
+                        $('#Estado').val(value);
+                    else if (key == 'localidade')
+                        $('#Cidade').val(value);
+                });
+            });
+        });
+    </script>
+}
+
 <div>
-    @Html.ActionLink("Voltar à listagem", "Index")
+    @Html.ActionLink("Voltar à listagem", "Index", "Amigos", htmlAttributes: new { @class = "btn btn-default" })
 </div>

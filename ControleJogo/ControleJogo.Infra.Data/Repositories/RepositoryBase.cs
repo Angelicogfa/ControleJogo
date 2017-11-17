@@ -21,6 +21,9 @@ namespace ControleJogo.Infra.Data.Repositories
 
         public T Atualizar(T obj)
         {
+            if (_ctx.Entry(obj).State == System.Data.Entity.EntityState.Detached)
+                _ctx.Set<T>().Attach(obj);
+
             _ctx.Entry(obj).State = System.Data.Entity.EntityState.Modified;
             return obj;
         }
@@ -42,6 +45,9 @@ namespace ControleJogo.Infra.Data.Repositories
 
         public T Remover(T obj)
         {
+            if (_ctx.Entry(obj).State == System.Data.Entity.EntityState.Detached)
+                _ctx.Set<T>().Attach(obj);
+
             return _ctx.Set<T>().Remove(obj);
         }
     }

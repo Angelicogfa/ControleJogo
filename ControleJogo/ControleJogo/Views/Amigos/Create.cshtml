@@ -6,21 +6,22 @@
 
 <h2>Novo</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Amigo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @Html.HiddenFor(t=> t.Id)
+        @Html.HiddenFor(t => t.Id)
+        @Html.HiddenFor(t => t.DataCadastro)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                 @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,18 +37,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model=> model.Estado, new { @class = "form-control" } )
+                @Html.EnumDropDownListFor(model => model.Estado, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CEP, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "form-control", @placeholder = "00000-000" } })
                 @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
             </div>
-            <button id="buscarCep" type="button">Buscar CEP</button>
+            <button id="buscarCep" class="btn btn-info" style="align-content:center;" type="button">Buscar CEP</button>
         </div>
 
         <div class="form-group">
@@ -92,7 +93,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
+                <input type="submit" value="Salvar" class="btn btn-info" />
             </div>
         </div>
     </div>
@@ -100,24 +101,19 @@
 
 @section scripts{
     <script type="text/javascript">
-        $('#buscarCep').click(function ()
-        {
+        $('#buscarCep').click(function () {
             var cep = $('#CEP').val();
 
-            if (cep == null || cep.lenght != 9)
-            {
-                alert('CEP não informado');
+            if (cep == null || cep.length != 9) {
+                alert('CEP não informado. CEP com ' + cep.length + ' caracteres');
                 return;
             }
 
-            cep = cep.replace('^([0-9]{8})$', '');
+            cep = cep.replace('-', '');
 
             var url = 'http://viacep.com.br/ws/' + cep + '/json';
-            $.getJSON(url, function (data)
-            {
-                //var json = { cep = '', logradouro = '', complemento  = '', bairro = '', localidade  = '', uf = '', unidade = '', ibge = '', gia = '' };
-                JSON.parse(data, (key, value) =>
-                {
+            $.getJSON(url, function (data) {
+                JSON.parse(JSON.stringify(data), (key, value) => {
                     if (key == 'logradouro')
                         $('#Endereco').val(value);
                     else if (key == 'complemento')
@@ -125,15 +121,15 @@
                     else if (key == 'bairro')
                         $('#Bairro').val(value);
                     else if (key == 'uf')
-                        $('#Estado').val(value);
+                        $('#Estado').innerHTML = value;
                     else if (key == 'localidade')
                         $('#Cidade').val(value);
                 });
             });
         });
     </script>
-    }
+}
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar à listagem", "Index", "Amigos", htmlAttributes: new { @class = "btn btn-default" })
 </div>
