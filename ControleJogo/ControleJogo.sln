@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleJogo.Infra.Notifica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleJogo.Aplicacao", "ControleJogo.Aplicacao\ControleJogo.Aplicacao.csproj", "{9AFB8A4F-05FF-4DC4-82B1-E6D29E67DD2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleJogo.Infra.DatabaseRead", "ControleJogo.Infra.DatabaseRead\ControleJogo.Infra.DatabaseRead.csproj", "{24CB8106-404C-43F9-892D-38FE17F55241}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{9AFB8A4F-05FF-4DC4-82B1-E6D29E67DD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFB8A4F-05FF-4DC4-82B1-E6D29E67DD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFB8A4F-05FF-4DC4-82B1-E6D29E67DD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24CB8106-404C-43F9-892D-38FE17F55241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24CB8106-404C-43F9-892D-38FE17F55241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24CB8106-404C-43F9-892D-38FE17F55241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24CB8106-404C-43F9-892D-38FE17F55241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

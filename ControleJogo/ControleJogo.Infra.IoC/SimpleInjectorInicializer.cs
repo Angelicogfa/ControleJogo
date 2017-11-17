@@ -13,6 +13,7 @@ using ControleJogo.Dominio.Jogos.Services;
 using ControleJogo.Dominio.Amigos.Services;
 using ControleJogo.Dominio.Emprestimo.Events;
 using ControleJogo.Aplicacao.EmailSenderAppService;
+using ControleJogo.Infra.Notification.Email;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -46,6 +47,10 @@ namespace ControleJogo.Infra.IoC
 
             //Aplicacao
             container.Register<IAsyncNotificationHandler<EmprestimoEfetuadoEvent>, EmprestimoJogoEventHandler>(Lifestyle.Scoped);
+
+            //External Services
+            //Email
+            container.Register<IEmailSender, EmailSender>(Lifestyle.Scoped);
         }
     }
 }
