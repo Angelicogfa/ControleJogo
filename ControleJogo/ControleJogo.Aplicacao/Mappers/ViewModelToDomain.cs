@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ControleJogo.Aplicacao.Mappers.Configure;
-using ControleJogo.Aplicacao.ViewModels;
+using ControleJogo.Aplicacao.InputModel;
 using ControleJogo.Dominio.Amigos.Entities;
 
 namespace ControleJogo.Aplicacao.Mappers

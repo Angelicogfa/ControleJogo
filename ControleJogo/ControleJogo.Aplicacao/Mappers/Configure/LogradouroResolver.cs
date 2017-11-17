@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ControleJogo.Aplicacao.ViewModels;
+using ControleJogo.Aplicacao.InputModel;
 using ControleJogo.Dominio.Amigos.Entities;
 using ControleJogo.Dominio.Amigos.ObejctValues;
 using System;

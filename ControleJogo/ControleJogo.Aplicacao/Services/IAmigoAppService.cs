@@ -1,4 +1,4 @@
-﻿using ControleJogo.Aplicacao.ViewModels;
+﻿using ControleJogo.Aplicacao.InputModel;
 using System;
 using System.Threading.Tasks;
 

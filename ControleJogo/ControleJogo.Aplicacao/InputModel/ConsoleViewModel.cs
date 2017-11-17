@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleJogo.Aplicacao.ViewModels
+namespace ControleJogo.Aplicacao.InputModel
 {
-    public class CategoriaViewModel
+    public class ConsoleViewModel
     {
         [Key]
         public Guid Id { get; set; }

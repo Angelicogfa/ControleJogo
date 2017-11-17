@@ -60,11 +60,11 @@
     <Compile Include="Services\IConsoleAppService.cs" />
     <Compile Include="Services\IJogoAppService.cs" />
     <Compile Include="Services\JogoAppService.cs" />
-    <Compile Include="ViewModels\AmigoViewModel.cs" />
-    <Compile Include="ViewModels\CategoriaViewModel.cs" />
-    <Compile Include="ViewModels\ConsoleViewModel.cs" />
-    <Compile Include="ViewModels\Estado.cs" />
-    <Compile Include="ViewModels\JogoViewModel.cs" />
+    <Compile Include="InputModel\AmigoViewModel.cs" />
+    <Compile Include="InputModel\CategoriaViewModel.cs" />
+    <Compile Include="InputModel\ConsoleViewModel.cs" />
+    <Compile Include="InputModel\Estado.cs" />
+    <Compile Include="InputModel\JogoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ControleJogo.Dominio\ControleJogo.Dominio.csproj">

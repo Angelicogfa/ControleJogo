@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ControleJogo.Aplicacao.ViewModels
+namespace ControleJogo.Aplicacao.InputModel
 {
     public class AmigoViewModel
     {

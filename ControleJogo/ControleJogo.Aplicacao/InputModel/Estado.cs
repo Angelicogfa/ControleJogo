@@ -1,4 +1,4 @@
-﻿namespace ControleJogo.Aplicacao.ViewModels
+﻿namespace ControleJogo.Aplicacao.InputModel
 {
     public enum Estado : int
     {

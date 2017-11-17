@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ControleJogo.Aplicacao.ViewModels;
+using ControleJogo.Aplicacao.InputModel;
 using DomainDrivenDesign.Repositories;
 using ControleJogo.Dominio.Jogos.Services;
 using ControleJogo.Dominio.Jogos.Entities;

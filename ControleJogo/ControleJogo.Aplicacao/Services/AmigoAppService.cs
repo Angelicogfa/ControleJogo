@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ControleJogo.Aplicacao.ViewModels;
+using ControleJogo.Aplicacao.InputModel;
 using DomainDrivenDesign.Repositories;
 using ControleJogo.Dominio.Amigos.Services;
 using ControleJogo.Dominio.Amigos.Entities;
