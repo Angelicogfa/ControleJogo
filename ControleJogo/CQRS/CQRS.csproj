@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="DomainEvents\DomainEvent.cs" />
+    <Compile Include="DomainEvents\DomainEventHandler.cs" />
     <Compile Include="Events\Event.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

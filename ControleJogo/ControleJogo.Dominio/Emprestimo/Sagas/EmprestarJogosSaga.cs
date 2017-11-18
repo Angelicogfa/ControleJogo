@@ -40,7 +40,7 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
                 var emprestimo = jogo.NovoEmprestimo(message.Amigo);
                 if (emprestimo == null)
                 {
-                    await _mediator.Publish(new JogoNaoDisponivelEvent(message.Jogo));
+                    await _mediator.Publish(new DomainEvent("", $"O jogo {jogo.Nome} não está disponível para emprestimo!"));
                     return;
                 }
 

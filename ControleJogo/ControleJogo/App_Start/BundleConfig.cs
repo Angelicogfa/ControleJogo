@@ -11,6 +11,8 @@ namespace ControleJogo
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.tablesorter.min.js"));
 
+
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -23,9 +25,11 @@ namespace ControleJogo
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.css", "~/Content/site.css"));
-                      //"~/Content/bootstrap.min.css",
-                      //"~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css")
+                .Include("~/Content/bootstrap.css", "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/notify").Include(
+                        "~/Scripts/bootstrap-notify.min"));
         }
     }
 }

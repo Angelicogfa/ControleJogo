@@ -53,6 +53,9 @@
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -138,6 +141,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AmigosController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ConsolesController.cs" />
     <Compile Include="Controllers\EmprestimosController.cs" />
@@ -184,6 +188,8 @@
     <Content Include="pager\next.png" />
     <Content Include="pager\pager.css" />
     <Content Include="pager\prev.png" />
+    <Content Include="Scripts\bootstrap-notify.js" />
+    <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -250,7 +256,9 @@
     <Content Include="Views\Jogos\_topJogosEmprestados.cshtml" />
     <Content Include="Views\Emprestimos\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
@@ -272,6 +280,10 @@
     <ProjectReference Include="..\ControleJogo.Infra.IoC\ControleJogo.Infra.IoC.csproj">
       <Project>{415865b9-44b1-410a-8cc4-8de693a9b546}</Project>
       <Name>ControleJogo.Infra.IoC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CQRS\CQRS.csproj">
+      <Project>{2c7c4335-cce4-4472-b138-e020e67d3189}</Project>
+      <Name>CQRS</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

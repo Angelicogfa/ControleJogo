@@ -1,5 +1,7 @@
 ﻿using ControleJogo.Aplicacao.Services;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
+using CQRS.DomainEvents;
+using MediatR;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,17 +10,19 @@ using System.Web.Mvc;
 namespace ControleJogo.Controllers
 {
     [Authorize]
-    public class EmprestimosController : Controller
+    public class EmprestimosController : BaseController
     {
         readonly IEmprestimoJogoDataRead read;
         readonly IAmigoDataRead amigosRead;
         readonly IJogoDataRead jogosRead;
         readonly IEmprestimoJogoAppService service;
 
-        public EmprestimosController(IEmprestimoJogoDataRead read, 
+        public EmprestimosController(
+            INotificationHandler<DomainEvent> notificationHandler,
+            IEmprestimoJogoDataRead read, 
             IAmigoDataRead amigosRead, 
             IJogoDataRead jogosRead, 
-            IEmprestimoJogoAppService service)
+            IEmprestimoJogoAppService service) : base(notificationHandler)
         {
             this.read = read;
             this.amigosRead = amigosRead;
@@ -38,12 +42,8 @@ namespace ControleJogo.Controllers
         [Route("Create")]
         public async Task<ActionResult> Create(Guid Amigo, Guid Jogo)
         {
-            var result = await service.NovoEmprestimo(Jogo, Amigo);
-            if(!result.IsValid)
-            {
-                foreach (var erro in result.Errors)
-                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
-            }
+            await service.NovoEmprestimo(Jogo, Amigo);
+            Notify();
             return RedirectToAction("BuscarEmprestimos", new { Amigo = Amigo, Jogo = Jogo });
         }
 
@@ -51,14 +51,8 @@ namespace ControleJogo.Controllers
         [Route("DevolverJogo")]
         public async Task<ActionResult> DevolverJogo(Guid Id)
         {
-            var result = await service.DevolverJogoEmprestado(Id);
-
-            if (!result.IsValid)
-            {
-                foreach (var erro in result.Errors)
-                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
-            }
-
+            await service.DevolverJogoEmprestado(Id);
+            Notify();
             var emprestimo = await read.BuscarPeloId(Id);
             return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
         }
@@ -67,14 +61,8 @@ namespace ControleJogo.Controllers
         [Route("RenovarEmprestimo")]
         public async Task<ActionResult> RenovarEmprestimo(Guid Id)
         {
-            var result = await service.RenovarJogoEmprestimo(Id);
-
-            if (!result.IsValid)
-            {
-                foreach (var erro in result.Errors)
-                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
-            }
-
+            await service.RenovarJogoEmprestimo(Id);
+            Notify();
             var emprestimo = await read.BuscarPeloId(Id);
             return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
         }

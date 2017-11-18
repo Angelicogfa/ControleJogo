@@ -20,6 +20,8 @@ using ControleJogo.Aplicacao.Services;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
 using ControleJogo.Infra.Data.Contexto;
 using CQRS.DomainEvents;
+using System;
+using System.Reflection;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -56,7 +58,8 @@ namespace ControleJogo.Infra.IoC
             container.Register<IAsyncRequestHandler<DevolverJogoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncRequestHandler<RenovarEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncNotificationHandler<JogoNaoDisponivelEvent>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<INotificationHandler<DomainEvent>, EmprestimoJogoAppService>(Lifestyle.Scoped);
+            //container.Register<INotificationHandler<DomainEvent>, DomainEventHandler>(Lifestyle.Scoped);
+            container.Register(typeof(INotificationHandler<>), new Assembly[] { Assembly.GetAssembly(typeof(DomainEventHandler)) }, Lifestyle.Scoped);
 
             //Aplicacao
             container.Register<IAsyncNotificationHandler<EmprestimoEfetuadoEvent>, EmprestimoJogoEventHandler>(Lifestyle.Scoped);
@@ -76,8 +79,6 @@ namespace ControleJogo.Infra.IoC
             container.Register<IJogoDataRead, JogoFacadeRead>(Lifestyle.Scoped);
             container.Register<IAmigoDataRead, AmigoFacadeRead>(Lifestyle.Scoped);
             container.Register<IEmprestimoJogoDataRead, EmprestimoJogoFacadeRead>(Lifestyle.Scoped);
-            
-
 
             //Identity
             container.Register<UserContext>(Lifestyle.Scoped);

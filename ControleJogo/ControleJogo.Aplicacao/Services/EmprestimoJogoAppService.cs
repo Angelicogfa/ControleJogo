@@ -9,53 +9,28 @@ using System.Threading.Tasks;
 namespace ControleJogo.Aplicacao.Services
 {
     public class EmprestimoJogoAppService : 
-        IEmprestimoJogoAppService,
-        IDisposable,
-        INotificationHandler<DomainEvent>
+        IEmprestimoJogoAppService
     {
         readonly IMediator mediator;
-
-        List<DomainEvent> events = new List<DomainEvent>();
 
         public EmprestimoJogoAppService(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
-       
-
-        public void Dispose()
-        {
-            events.Clear();
-        }
-
-        public void Handle(DomainEvent notification)
-        {
-            events.Add(notification);
-        }
-
-        public async Task<ValidationResult> NovoEmprestimo(Guid Jogo, Guid Amigo)
+        public async Task NovoEmprestimo(Guid Jogo, Guid Amigo)
         {
             await mediator.Send(new NovoEmprestimoCommand(Jogo, Amigo));
-            ValidationResult result = new ValidationResult();
-            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
-            return result;
         }
 
-        public async Task<ValidationResult> RenovarJogoEmprestimo(Guid id)
+        public async Task RenovarJogoEmprestimo(Guid id)
         {
             await mediator.Send(new RenovarEmprestimoCommand(id));
-            ValidationResult result = new ValidationResult();
-            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
-            return result;
         }
 
-        public async Task<ValidationResult> DevolverJogoEmprestado(Guid Emprestimo)
+        public async Task DevolverJogoEmprestado(Guid Emprestimo)
         {
             await mediator.Send(new DevolverJogoCommand(Emprestimo));
-            ValidationResult result = new ValidationResult();
-            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
-            return result;
         }
     }
 }
