@@ -10,6 +10,6 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
         Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaJogo(Guid Id);
         Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaAmigo(Guid Id);
         Task<IEnumerable<TopEmprestados>> TopMaisEmprestados();
-        Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaJogoAmigo(Guid? Amigo, Guid? Jogo);
+        Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaJogoAmigo(Guid? Amigo, Guid? Jogo, bool? Devolvido);
     }
 }

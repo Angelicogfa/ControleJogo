@@ -8,13 +8,11 @@ namespace ControleJogo.Dominio.Emprestimo.Commands
     {
         public Guid Jogo { get; private set; }
         public Guid Amigo { get; private set; }
-        public DateTime DataDevolucao { get; private set; }
 
-        public NovoEmprestimoCommand(Guid Jogo, Guid Amigo, DateTime DataDevolucao)
+        public NovoEmprestimoCommand(Guid Jogo, Guid Amigo)
         {
             this.Amigo = Amigo;
             this.Jogo = Jogo;
-            this.DataDevolucao = DataDevolucao;
         }
     }
 }

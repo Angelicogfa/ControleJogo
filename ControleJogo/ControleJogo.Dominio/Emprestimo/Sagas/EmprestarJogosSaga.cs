@@ -14,7 +14,8 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
     public class EmprestarJogosSaga : SagaBase,
         IAsyncRequestHandler<NovoEmprestimoCommand>,
         IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>,
-        IAsyncRequestHandler<AtualizarStatusDevolucaoEmprestimoCommand>,
+        IAsyncRequestHandler<DevolverJogoCommand>,
+        IAsyncRequestHandler<RenovarEmprestimoCommand>,
         IAsyncNotificationHandler<JogoNaoDisponivelEvent>
     {
         readonly IJogoRepository jogoRepository;
@@ -72,14 +73,31 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
             await Commit();
         }
 
-        public async Task Handle(AtualizarStatusDevolucaoEmprestimoCommand message)
+        public async Task Handle(DevolverJogoCommand message)
         {
             var emprestimo = await emprestimoJogoRepository.ProcurarPeloId(message.EmprestimoId);
-            emprestimo.AlterarStatusDevolvido(message.Devolvido);
+            emprestimo.Devolver();
             emprestimoJogoRepository.Atualizar(emprestimo);
 
             if (await Commit())
                 await _mediator.Send(new AtualizarStatusJogoDisponivelCommand(emprestimo.JogoId));
+        }
+
+        public async Task Handle(RenovarEmprestimoCommand message)
+        {
+            try
+            {
+                var emprestimo = await emprestimoJogoRepository.ProcurarPeloId(message.EmprestimoId);
+                emprestimo.Renovar();
+                emprestimoJogoRepository.Atualizar(emprestimo);
+
+                if (await Commit())
+                    await _mediator.Send(new AtualizarStatusJogoDisponivelCommand(emprestimo.JogoId));
+            }
+            catch (Exception ex)
+            {
+                await _mediator.Publish(new DomainEvent("", ex.Message));
+            }
         }
     }
 }

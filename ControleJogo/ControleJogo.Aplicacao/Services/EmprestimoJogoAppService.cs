@@ -22,13 +22,7 @@ namespace ControleJogo.Aplicacao.Services
             this.mediator = mediator;
         }
 
-        public async Task<ValidationResult> AtualizarStatusEmprestimo(Guid Emprestimo, bool Devolvido)
-        {
-            await mediator.Send(new AtualizarStatusDevolucaoEmprestimoCommand(Emprestimo, Devolvido));
-            ValidationResult result = new ValidationResult();
-            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
-            return result;
-        }
+       
 
         public void Dispose()
         {
@@ -42,7 +36,23 @@ namespace ControleJogo.Aplicacao.Services
 
         public async Task<ValidationResult> NovoEmprestimo(Guid Jogo, Guid Amigo)
         {
-            await mediator.Send(new NovoEmprestimoCommand(Jogo, Amigo, DateTime.Now.AddDays(7)));
+            await mediator.Send(new NovoEmprestimoCommand(Jogo, Amigo));
+            ValidationResult result = new ValidationResult();
+            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
+            return result;
+        }
+
+        public async Task<ValidationResult> RenovarJogoEmprestimo(Guid id)
+        {
+            await mediator.Send(new RenovarEmprestimoCommand(id));
+            ValidationResult result = new ValidationResult();
+            events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
+            return result;
+        }
+
+        public async Task<ValidationResult> DevolverJogoEmprestado(Guid Emprestimo)
+        {
+            await mediator.Send(new DevolverJogoCommand(Emprestimo));
             ValidationResult result = new ValidationResult();
             events.ForEach(t => result.Errors.Add(new ValidationFailure(t.Key, t.Value)));
             return result;

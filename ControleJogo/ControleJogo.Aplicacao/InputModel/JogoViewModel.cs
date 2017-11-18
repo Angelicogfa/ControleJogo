@@ -20,9 +20,9 @@ namespace ControleJogo.Aplicacao.InputModel
         [Required(ErrorMessage = "{0} não informado!")]
         public Guid ConsoleId { get; set; }
 
-        [Display(Name = "Indisponível")]
+        [Display(Name = "Disponível")]
         [Required(ErrorMessage = "{0} não informado!")]
-        public bool Indisponivel { get; set; }
+        public bool Disponivel { get; set; }
 
         [Display(Name = "Foto")]
         public byte[] FotoJogo { get; set; }

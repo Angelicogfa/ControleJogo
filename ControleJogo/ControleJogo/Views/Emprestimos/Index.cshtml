@@ -7,14 +7,23 @@
 
 
 <div class="col-md-12">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
         <label>Amigos</label>
         @Html.DropDownList("AmigoId", ViewBag.Amigos as IEnumerable<SelectListItem>, "Selecione", new { @class = "form-control" })
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
         <label>Jogos</label>
         @Html.DropDownList("JogoId", ViewBag.Jogos as IEnumerable<SelectListItem>, "Selecione", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group col-md-2">
+        <label>Status de Devolução</label>
+        <select id="Devolvido" class="form-control">
+            <option value="">Todos</option>
+            <option value="true">Devolvidos</option>
+            <option value="false">Emprestado</option>
+        </select>
     </div>
 
     <div class="form-group col-md-1">
@@ -72,11 +81,11 @@
 @section scripts{
     <script>
         $('#buscarEmprestimos').click(function () {
-            BuscarEmprestimos($('#JogoId').val(), $('#AmigoId').val());
+            BuscarEmprestimos($('#JogoId').val(), $('#AmigoId').val(), $('#Devolvido').val());
         });
 
-        function BuscarEmprestimos(Jogo, Amigo) {
-            $.get('@Url.Action("BuscarEmprestimos")?Amigo=' + Amigo + '&Jogo=' + Jogo, function (data) {
+        function BuscarEmprestimos(Jogo, Amigo, Devolvido) {
+            $.get('@Url.Action("BuscarEmprestimos")?Amigo=' + Amigo + '&Jogo=' + Jogo + '&Devolvido=' + Devolvido, function (data) {
                 $('#emprestimos').html(data);
             });
         };
@@ -105,9 +114,5 @@
                 $('#modalEmprestimo').modal('hide');
             });
         });
-
-        $(function () {
-            $('#tableEmprestimo').tablesorter();
-        })
     </script>
 }

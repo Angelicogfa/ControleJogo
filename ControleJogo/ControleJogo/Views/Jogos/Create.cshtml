@@ -4,9 +4,9 @@
     ViewBag.Title = "Novo";
 }
 
-<h2>Create</h2>
+<h2>Novo Jogo</h2>
 
-@using (Html.BeginForm("Create", "Jogos", FormMethod.Post, , new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Jogos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

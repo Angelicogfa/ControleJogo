@@ -37,6 +37,7 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
         public DateTime DataEmprestimo { get; private  set; }
         [Display(Name = "Data para Devolução")]
         public DateTime DataDevolucao { get; private  set; }
+        [Display(Name = "Status")]
         public bool Devolvido { get; private  set; }
     }
 }

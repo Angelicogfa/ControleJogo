@@ -38,18 +38,38 @@
                     @Html.DisplayFor(modelItem => item.DataDevolucao)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Devolvido)
+                    @{
+                        if (item.Devolvido)
+                        {
+                            <p>Devolvido</p>
+                        }
+                        else
+                        {
+                            if (DateTime.Now > item.DataDevolucao)
+                            {
+                                <p>Atrasado</p>
+                            }
+                            else
+                            {
+                                <p>Emprestado</p>
+                            }
+                        }
+                    }
                 </td>
                 <th>
                     @{
                         if (Request.IsAuthenticated)
                         {
-                            <button type="submit" onclick="AtualizarStatus('@Url.Action("AtualizarStatusDevolucao", "Emprestimos", new { Id = item.Id, Devolvido = !item.Devolvido })')" class="btn btn-success">Atualizar Status</button>
+                            if (!item.Devolvido)
+                            {
+                                <button type="submit" onclick="AtualizarStatus('@Url.Action("RenovarEmprestimo", "Emprestimos", new { Id = item.Id })')" class="btn btn-info">Renovar</button>
+                                <button type="submit" onclick="AtualizarStatus('@Url.Action("DevolverJogo", "Emprestimos", new { Id = item.Id })')" class="btn btn-success">Devolver</button>
+                            }
                         }
                     }
                 </th>
             </tr>
-         }
+                        }
     </tbody>
 </table>
 
@@ -59,5 +79,9 @@
             $('#emprestimos').html(data);
         });
     }
+
+    //$(function () {
+    //    $('#tableEmprestimo').tablesorter();
+    //})
 </script>
 

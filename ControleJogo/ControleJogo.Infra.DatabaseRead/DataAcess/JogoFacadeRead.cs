@@ -19,7 +19,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
             sql.AppendLine(" cat.Descricao DescricaoCategoria,");
             sql.AppendLine(" j.ConsoleId ConsoleId,");
             sql.AppendLine(" con.Descricao DescricaoConsole,");
-            sql.AppendLine(" j.Indisponivel Indisponivel,");
+            sql.AppendLine(" j.Disponivel Disponivel,");
             sql.AppendLine(" j.QuantidadeJogos QuantidadeJogos");
             sql.AppendLine(" from Jogo j");
             sql.AppendLine(" inner join Categoria cat on j.CategoriaId = cat.Id");

@@ -52,8 +52,9 @@
     <Compile Include="Amigos\Validations\AmigoPodeSerExcluidoApenasSeNaoTiverEmprestimosValidator.cs" />
     <Compile Include="Amigos\Validations\EmailEstaConsistenteValidator.cs" />
     <Compile Include="Amigos\Validations\LogradouroEstaConsistenteValidator.cs" />
-    <Compile Include="Emprestimo\Commands\AtualizarStatusDevolucaoEmprestimoCommand.cs" />
+    <Compile Include="Emprestimo\Commands\DevolverJogoCommand.cs" />
     <Compile Include="Emprestimo\Commands\NovoEmprestimoCommand.cs" />
+    <Compile Include="Emprestimo\Commands\RenovarEmprestimoCommand.cs" />
     <Compile Include="Emprestimo\Entities\EmprestimoJogo.cs" />
     <Compile Include="Emprestimo\Commands\AtualizarStatusJogoDisponivelCommand.cs" />
     <Compile Include="Emprestimo\Events\EmprestimoEfetuadoEvent.cs" />

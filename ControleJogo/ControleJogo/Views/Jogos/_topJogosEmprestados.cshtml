@@ -14,7 +14,7 @@
             {
                 var item = Model.ElementAt(i);
                 <div class="item @(i == 0 ? "active" : string.Empty)">
-                    <img src="@Url.Action("ObterFotoJogo", "Jogos", new { Id = item.JogoId })" alt="@($"Jogo {item.NomeJogo}")" class="img-responsive" style="align-content:stretch"/>
+                    <img src="@Url.Action("ObterFotoJogo", "Jogos", new { Id = item.JogoId })" alt="@($"Jogo {item.NomeJogo}")" class="img-responsive" style="align-content:stretch;width:250px;height:250px;"/>
                     <div class="carousel-caption" role="option">
                         <h1 style="font-style:oblique">
                             @item.NomeJogo

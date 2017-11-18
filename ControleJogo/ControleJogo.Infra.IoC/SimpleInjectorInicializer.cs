@@ -53,7 +53,8 @@ namespace ControleJogo.Infra.IoC
             //Commands e Events
             container.Register<IAsyncRequestHandler<NovoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<IAsyncRequestHandler<AtualizarStatusDevolucaoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<IAsyncRequestHandler<DevolverJogoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<IAsyncRequestHandler<RenovarEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncNotificationHandler<JogoNaoDisponivelEvent>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<INotificationHandler<DomainEvent>, EmprestimoJogoAppService>(Lifestyle.Scoped);
 

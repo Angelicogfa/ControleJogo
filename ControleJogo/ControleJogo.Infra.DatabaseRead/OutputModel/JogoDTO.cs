@@ -5,7 +5,7 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
     public class JogoDTO : IOutputModel
     {
-        public JogoDTO(Guid id, string nome, Guid categoriaId, string descricaoCategoria, Guid consoleId, string descricaoConsole, bool indisponivel, int quantidadeJogos)
+        public JogoDTO(Guid id, string nome, Guid categoriaId, string descricaoCategoria, Guid consoleId, string descricaoConsole, bool disponivel, int quantidadeJogos)
         {
             Id = id;
             Nome = nome;
@@ -13,7 +13,7 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
             DescricaoCategoria = descricaoCategoria;
             ConsoleId = consoleId;
             DescricaoConsole = descricaoConsole;
-            Indisponivel = indisponivel;
+            Disponivel = disponivel;
             QuantidadeJogos = quantidadeJogos;
         }
 
@@ -34,9 +34,9 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
         public Guid ConsoleId { get; private set; }
         [Display(Name = "Console")]
         public string DescricaoConsole { get; set; }
-        [Display(Name = "Jogo Indisponível")]
-        public bool Indisponivel { get; private set; }
-        [Display(Name = "Quant. Disp. para Empréstimo")]
+        [Display(Name = "Jogo Disponível")]
+        public bool Disponivel { get; private set; }
+        [Display(Name = "Quant. de Jogos")]
         public int QuantidadeJogos { get; private set; }
     }
 }

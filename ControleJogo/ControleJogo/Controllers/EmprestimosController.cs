@@ -48,10 +48,10 @@ namespace ControleJogo.Controllers
         }
 
         [HttpPost]
-        [Route("AtualizarStatusDevolucao")]
-        public async Task<ActionResult> AtualizarStatusDevolucao(Guid Id, bool Devolvido)
+        [Route("DevolverJogo")]
+        public async Task<ActionResult> DevolverJogo(Guid Id)
         {
-            var result = await service.AtualizarStatusEmprestimo(Id, Devolvido);
+            var result = await service.DevolverJogoEmprestado(Id);
 
             if (!result.IsValid)
             {
@@ -60,13 +60,29 @@ namespace ControleJogo.Controllers
             }
 
             var emprestimo = await read.BuscarPeloId(Id);
-            return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId, Jogo = emprestimo.JogoId });
+            return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
+        }
+
+        [HttpPost]
+        [Route("RenovarEmprestimo")]
+        public async Task<ActionResult> RenovarEmprestimo(Guid Id)
+        {
+            var result = await service.RenovarJogoEmprestimo(Id);
+
+            if (!result.IsValid)
+            {
+                foreach (var erro in result.Errors)
+                    ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
+            }
+
+            var emprestimo = await read.BuscarPeloId(Id);
+            return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
         }
 
         [AllowAnonymous]
-        public async Task<PartialViewResult> BuscarEmprestimos(Guid? Amigo = null, Guid? Jogo = null)
+        public async Task<PartialViewResult> BuscarEmprestimos(Guid? Amigo = null, Guid? Jogo = null, bool? Devolvido= null)
         {
-            return PartialView("_emprestimo", await read.BuscarTodosParaJogoAmigo(Amigo, Jogo));
+            return PartialView("_emprestimo", await read.BuscarTodosParaJogoAmigo(Amigo, Jogo, Devolvido));
         }
     }
 }

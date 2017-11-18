@@ -19,13 +19,13 @@ namespace ControleJogo.Dominio.Emprestimo.Entities
         public virtual Jogo Jogo { get; private set; }
         public virtual Amigo Amigo { get; private set; }
 
-        internal EmprestimoJogo(Guid JogoId, Guid AmigoId, DateTime DataDevolucao)
+        internal EmprestimoJogo(Guid JogoId, Guid AmigoId)
         {
             Id = Guid.NewGuid();
             this.JogoId = JogoId;
             this.AmigoId = AmigoId;
             DataEmprestimo = DateTime.Now;
-            this.DataDevolucao = DataDevolucao;
+            this.DataDevolucao = DataEmprestimo.AddDays(7);
         }
 
         protected EmprestimoJogo()
@@ -43,10 +43,22 @@ namespace ControleJogo.Dominio.Emprestimo.Entities
             return ValidationResult?.IsValid ?? false;
         }
 
-        public void AlterarStatusDevolvido(bool devolvido)
+        public void Devolver()
         {
-            Devolvido = devolvido;
-            DataDevolucao = devolvido ? DateTime.Now : DataDevolucao;
+            Devolvido = true;
+            DataDevolucao = DateTime.Now;
         }
+
+        public void Renovar()
+        {
+            Devolvido = false;
+
+            DateTime novaData = DataDevolucao.AddDays(7);
+            int dias = (novaData - DataEmprestimo).Days;
+            if (dias > 21)//Tres semanas
+                throw new InvalidOperationException("Renovação não permitida!");
+
+            DataDevolucao = novaData;
+         }
     }
 }

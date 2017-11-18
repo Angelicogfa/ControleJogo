@@ -28,7 +28,7 @@ namespace ControleJogo.Infra.Data.Contexto.Mapping
             Property(t => t.DataCadastro)
                 .IsRequired();
 
-            Property(t => t.Indisponivel)
+            Property(t => t.Disponivel)
                 .IsRequired();
 
             Property(t => t.FotoJogo)

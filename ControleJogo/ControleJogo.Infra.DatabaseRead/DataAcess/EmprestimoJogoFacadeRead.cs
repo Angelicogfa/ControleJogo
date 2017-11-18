@@ -110,7 +110,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
             }
         }
 
-        public async Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaJogoAmigo(Guid? Amigo, Guid? Jogo)
+        public async Task<IEnumerable<EmprestimoDTO>> BuscarTodosParaJogoAmigo(Guid? Amigo, Guid? Jogo, bool? Devolvido)
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine("select TOP 10 emp.Id, emp.JogoId, j.Nome NomeJogo, emp.AmigoId,");
@@ -119,17 +119,22 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
             sql.AppendLine(" inner join Jogo j on emp.JogoId = j.Id");
             sql.AppendLine(" inner join Amigo a on emp.AmigoId = a.Id");
 
-
-            if(Amigo.HasValue || Jogo.HasValue)
+            if(Amigo.HasValue || Jogo.HasValue || Devolvido.HasValue)
             {
                 sql.AppendLine(" where ");
 
-                if(Amigo.HasValue && Jogo.HasValue)
-                    sql.Append($" a.Id = '{Amigo}' and j.Id = '{Jogo}'");
-                else if(Amigo.HasValue)
-                    sql.Append($" a.Id = '{Amigo}'");
-                else
-                    sql.Append($" j.Id = '{Jogo}'");
+                if(Amigo.HasValue)
+                    sql.Append($" a.Id = '{Amigo}' and");
+
+                if (Jogo.HasValue)
+                    sql.Append($" j.Id = '{Jogo}' and");
+
+                if(Devolvido.HasValue)
+                    sql.Append($" emp.Devolvido = '{Devolvido}' ");
+
+                int lastIndex = sql.ToString().LastIndexOf("and");
+                if (lastIndex > -1)
+                    sql = new StringBuilder(sql.ToString().Substring(0, lastIndex));
             }
             sql.AppendLine(" order by emp.DataEmprestimo desc");
 

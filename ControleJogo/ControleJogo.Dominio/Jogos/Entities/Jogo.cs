@@ -14,7 +14,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public Guid CategoriaId { get; private set; }
         public Guid ConsoleId { get; private set; }
         public DateTime DataCadastro { get; private set; }
-        public bool Indisponivel { get; private set; }
+        public bool Disponivel { get; private set; }
         public byte[] FotoJogo { get; private set; }
         public int QuantidadeJogos { get; private set; }
 
@@ -22,7 +22,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         {
             get
             {
-                return QuantidadeJogos - Emprestados.Where(t => !t.Devolvido).Count();
+                return (QuantidadeJogos - (Emprestados?.Where(t => !t.Devolvido).Count() ?? 0));
             }
         }
 
@@ -65,7 +65,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
             if (CopiasDisponiveis == 0)
                 return null;
 
-            return new EmprestimoJogo(Id, Amigo, DateTime.Now.AddDays(7));
+            return new EmprestimoJogo(Id, Amigo);
         }
 
         protected internal bool AdicionarEmprestimo(EmprestimoJogo emprestimo)
@@ -81,7 +81,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
 
         public void AtualizarStatus()
         {
-            Indisponivel = CopiasDisponiveis > 0 ? false : true;
+            Disponivel = CopiasDisponiveis > 0 ? true : false;
         }
 
         public bool EhValido()
