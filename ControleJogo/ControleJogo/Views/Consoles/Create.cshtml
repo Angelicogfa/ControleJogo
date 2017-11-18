@@ -1,4 +1,4 @@
-﻿@model ControleJogo.Aplicacao.InputModel.CategoriaViewModel
+﻿@model ControleJogo.Aplicacao.InputModel.ConsoleViewModel
 @{
     ViewBag.Title = "Novo";
 }
@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Nova Categoria</h4>
+        <h4>Conole</h4>
         <hr />
         @Html.Partial("_ValidationSummary")
 
@@ -32,7 +32,7 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar à listagem", "Index", "Categorias", htmlAttributes: new { @class = "btn btn-default" })
+    @Html.ActionLink("Voltar à listagem", "Index", "Consoles", htmlAttributes: new { @class = "btn btn-default" })
 </div>
 
 @section scripts{

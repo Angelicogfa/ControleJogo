@@ -3,24 +3,26 @@ using ControleJogo.Aplicacao.Services;
 using ControleJogo.Extensions;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ControleJogo.Controllers
 {
     [Authorize]
-    public class AmigosController : Controller
+    public class ConsolesController : Controller
     {
-        readonly IAmigoDataRead read;
-        readonly IAmigoAppService service;
+        private readonly IConsoleDataRead read;
+        private readonly IConsoleAppService service;
 
-        public AmigosController(IAmigoDataRead read, IAmigoAppService service)
+        public ConsolesController(IConsoleDataRead read, IConsoleAppService service)
         {
             this.read = read;
             this.service = service;
         }
 
-        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             return View(await read.BuscarTodos());
@@ -28,18 +30,17 @@ namespace ControleJogo.Controllers
 
         public async Task<ActionResult> Details(Guid id)
         {
-            var amigo = await read.BuscarPeloId(id);
-            return View(amigo.ConvertTo<AmigoViewModel>());
+            return View((await read.BuscarPeloId(id)).ConvertTo<ConsoleViewModel>());
         }
 
         public ActionResult Create()
         {
-            return View(new AmigoViewModel());
+            return View(new ConsoleViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(AmigoViewModel model)
+        public async Task<ActionResult> Create(ConsoleViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -58,13 +59,12 @@ namespace ControleJogo.Controllers
 
         public async Task<ActionResult> Edit(Guid id)
         {
-            var amigo = await read.BuscarPeloId(id);
-            return View(amigo.ConvertTo<AmigoViewModel>());
+            return View((await read.BuscarPeloId(id)).ConvertTo<ConsoleViewModel>());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(AmigoViewModel model)
+        public async Task<ActionResult> Edit(ConsoleViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -83,8 +83,7 @@ namespace ControleJogo.Controllers
 
         public async Task<ActionResult> Delete(Guid id)
         {
-            var amigo = await read.BuscarPeloId(id);
-            return View(amigo.ConvertTo<AmigoViewModel>());
+            return View((await read.BuscarPeloId(id)).ConvertTo<ConsoleViewModel>());
         }
 
         [HttpPost]
@@ -92,7 +91,7 @@ namespace ControleJogo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirm(Guid id)
         {
-            var model = (await read.BuscarPeloId(id)).ConvertTo<AmigoViewModel>();
+            var model = (await read.BuscarPeloId(id)).ConvertTo<ConsoleViewModel>();
             model = await service.Remover(model);
 
             if (model.ValidationResult.IsValid)

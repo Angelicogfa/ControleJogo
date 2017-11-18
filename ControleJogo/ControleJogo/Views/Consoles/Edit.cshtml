@@ -1,25 +1,25 @@
-﻿@model ControleJogo.Aplicacao.InputModel.CategoriaViewModel
+﻿@model ControleJogo.Aplicacao.InputModel.ConsoleViewModel
+
 @{
-    ViewBag.Title = "Novo";
+    ViewBag.Title = "Editar";
 }
 
-<h2>Novo</h2>
+<h2>Editar</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Nova Categoria</h4>
+        <h4>Editar Console</h4>
         <hr />
         @Html.Partial("_ValidationSummary")
-
-        @Html.HiddenFor(t => t.Id)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,9 +32,9 @@
 }
 
 <div>
-    @Html.ActionLink("Voltar à listagem", "Index", "Categorias", htmlAttributes: new { @class = "btn btn-default" })
+    @Html.ActionLink("Voltar à listagem", "Index", "Consoles", htmlAttributes: new { @class = "btn btn-default" })
 </div>
 
-@section scripts{
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
