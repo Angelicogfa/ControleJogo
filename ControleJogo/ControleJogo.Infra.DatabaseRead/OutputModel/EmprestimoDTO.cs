@@ -15,6 +15,7 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
             DataEmprestimo = dataAquisicao;
             DataDevolucao = dataDevolucao;
             Devolvido = devolvido;
+
         }
 
         protected EmprestimoDTO()
