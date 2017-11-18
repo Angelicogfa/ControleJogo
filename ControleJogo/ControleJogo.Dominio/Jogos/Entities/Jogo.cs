@@ -39,8 +39,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
             this.ConsoleId = ConsoleId;
             DataCadastro = DateTime.Now;
             this.Nome = Nome;
-            this.QuantidadeJogos = QuantidadeJogos;
-            Indisponivel = QuantidadeJogos > 0 ? false : true;
+            AlterarQuantidade(QuantidadeJogos);
             Emprestados = new List<EmprestimoJogo>();
         }
 
@@ -51,8 +50,15 @@ namespace ControleJogo.Dominio.Jogos.Entities
 
         public void AlterarNome(string Nome) => this.Nome = Nome;
         public void AlterarCategoria(Guid CategoriaId) => this.CategoriaId = CategoriaId;
+        public void AlterarConsole(Guid ConsoleId) => this.ConsoleId = ConsoleId;
 
         public void AlterarFotoJogo(byte[] FotoJogo) => this.FotoJogo = FotoJogo;
+
+        public void AlterarQuantidade(int Quantidade)
+        {
+            QuantidadeJogos = Quantidade;
+            Indisponivel = QuantidadeJogos > 0 ? false : true;
+        }
 
         public EmprestimoJogo NovoEmprestimo(Guid Amigo)
         {

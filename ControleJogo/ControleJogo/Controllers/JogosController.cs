@@ -77,26 +77,45 @@ namespace ControleJogo.Controllers
             return View(model);
         }
 
-        // GET: Jogo/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            return View((await read.BuscarPeloId(id)).ConvertTo<JogoViewModel>());
         }
 
-        // POST: Jogo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(JogoViewModel model, HttpPostedFileBase image)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                if (image != null && image.ContentLength > 0 && image.ContentType == "image/png")
+                {
+                    byte[] buffer = new byte[image.ContentLength];
+                    using (BufferedStream stream = new BufferedStream(image.InputStream))
+                    {
+                        await stream.ReadAsync(buffer, 0, buffer.Length);
+                    }
+                    model.FotoJogo = buffer;
+                }
+                else
+                    model.FotoJogo = await read.CarregarImagem(model.Id); //Garantir que a imagem não seja apagada caso outra não for informada
 
-                return RedirectToAction("Index");
+                model = await service.Atualizar(model);
+
+                if (model.ValidationResult.IsValid)
+                    return RedirectToAction("Index");
+
+                foreach (var item in model.ValidationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            return View(model);
         }
 
         // GET: Jogo/Delete/5

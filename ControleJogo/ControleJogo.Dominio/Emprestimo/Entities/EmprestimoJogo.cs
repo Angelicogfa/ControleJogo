@@ -28,6 +28,11 @@ namespace ControleJogo.Dominio.Emprestimo.Entities
             this.DataDevolucao = DataDevolucao;
         }
 
+        protected EmprestimoJogo()
+        {
+
+        }
+
         public void AlterarDataDevolucao(DateTime NovaDataDevolucao)
         {
             this.DataDevolucao = NovaDataDevolucao;

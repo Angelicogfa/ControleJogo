@@ -34,6 +34,7 @@ namespace ControleJogo.Dominio.Amigos.Entities
 
         }
 
+        public void AlterarNome(string Nome) => this.Nome = Nome;
         public void AlterarEmail(string Email) => this.Email = Email;
         public void AlterarLogradouro(Logradouro Logradouro) => this.Logradouro = Logradouro;
 

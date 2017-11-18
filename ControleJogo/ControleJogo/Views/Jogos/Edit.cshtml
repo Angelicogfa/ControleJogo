@@ -1,21 +1,20 @@
 ﻿@model ControleJogo.Aplicacao.InputModel.JogoViewModel
 
 @{
-    ViewBag.Title = "Novo";
+    ViewBag.Title = "Editar";
 }
 
-<h2>Create</h2>
+<h2>Editar</h2>
 
-@using (Html.BeginForm("Create", "Jogos", FormMethod.Post, , new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Jogos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Novo Jogo</h4>
+        <h4>Editar Jogo</h4>
         <hr />
         @Html.Partial("_ValidationSummary")
-
-        @Html.HiddenFor(t => t.Id)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -28,14 +27,15 @@
         <div class="form-group">
             <label class="control-label col-md-2">Imagem</label>
             <div class="col-md-10">
-                <input id="image" name="image" type="file" value="" accept="image/png" class="form-control"/>
+                <img src="@Url.Action("ObterFotoJogo", "Jogos", new { Id = Model.Id})" style="width:100px;height:100px;align-content:center;vertical-align:central;" class="img-responsive img-rounded" />
+                <input id="image" name="image" type="file" value="" accept="image/png" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CategoriaId, ViewBag.Categorias as IEnumerable<SelectListItem>, "Selecione...",new { @class = "form-control" } )
+                @Html.DropDownListFor(model => model.CategoriaId, ViewBag.Categorias as IEnumerable<SelectListItem>, "Selecione...", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,11 +43,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ConsoleId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ConsoleId, ViewBag.Consoles as IEnumerable<SelectListItem>, "Selecione...", new { @class = "form-control" } )
+                @Html.DropDownListFor(model => model.ConsoleId, ViewBag.Consoles as IEnumerable<SelectListItem>, "Selecione...", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ConsoleId, "", new { @class = "text-danger" })
             </div>
         </div>
 
+      
         <div class="form-group">
             @Html.LabelFor(model => model.QuantidadeJogos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -58,12 +59,11 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
 
 <div>
     @Html.ActionLink("Voltar à listagem", "Index", "Jogos", htmlAttributes: new { @class = "btn btn-default" })

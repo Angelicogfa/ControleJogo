@@ -1,5 +1,6 @@
 ﻿using DomainDrivenDesign.Entities;
 using DomainDrivenDesign.Repositories;
+using System.Threading.Tasks;
 
 namespace DomainDrivenDesign.Services
 {
@@ -25,6 +26,11 @@ namespace DomainDrivenDesign.Services
         public void Dispose()
         {
             _repository.Dispose();
+        }
+
+        public Task<T> ProcurarPeloId(A Id)
+        {
+            return _repository.ProcurarPeloId(Id);
         }
 
         public virtual T Remover(T obj)

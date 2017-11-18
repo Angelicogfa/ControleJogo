@@ -21,12 +21,10 @@ namespace ControleJogo.Infra.Data.Repositories
 
         public override async Task<Jogo> ProcurarPeloId(Guid Id)
         {
-            var jogo = await (from jogos in _ctx.Jogos
-                        join emprestimos in _ctx.Emprestimos on jogos.Id equals emprestimos.JogoId
-                        where jogos.Id == Id && !emprestimos.Devolvido
-                        select jogos).FirstOrDefaultAsync();
-
-            return jogo;
+            var dado = await base.ProcurarPeloId(Id);
+            if(dado != null)
+                dado.Emprestados.Where(t => !t.Devolvido);
+            return dado;
         }
     }
 }

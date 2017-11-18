@@ -243,6 +243,7 @@
     <Content Include="Views\Jogos\Index.cshtml" />
     <Content Include="Views\Jogos\Details.cshtml" />
     <Content Include="Views\Jogos\Create.cshtml" />
+    <Content Include="Views\Jogos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

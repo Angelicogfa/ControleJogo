@@ -32,7 +32,12 @@ namespace ControleJogo.Aplicacao.Services
 
         public async Task<JogoViewModel> Atualizar(JogoViewModel model)
         {
-            Jogo jogo = Mapper.Map<JogoViewModel, Jogo>(model);
+            var jogo = await jogoService.ProcurarPeloId(model.Id);
+            jogo.AlterarCategoria(model.CategoriaId);
+            jogo.AlterarConsole(model.ConsoleId);
+            jogo.AlterarQuantidade(model.QuantidadeJogos);
+            jogo.AlterarFotoJogo(model.FotoJogo);
+
             jogo = jogoService.Atualizar(jogo);
 
             if (!jogo.ValidationResult.IsValid)

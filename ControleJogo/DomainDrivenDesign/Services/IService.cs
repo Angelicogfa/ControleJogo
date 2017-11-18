@@ -1,5 +1,6 @@
 ﻿using DomainDrivenDesign.Entities;
 using System;
+using System.Threading.Tasks;
 
 namespace DomainDrivenDesign.Services
 {
@@ -8,5 +9,6 @@ namespace DomainDrivenDesign.Services
         T Adicionar(T obj);
         T Atualizar(T obj);
         T Remover(T obj);
+        Task<T> ProcurarPeloId(A Id);
     }
 }

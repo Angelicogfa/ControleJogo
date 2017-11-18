@@ -4,12 +4,16 @@ using DomainDrivenDesign.Repositories;
 using ControleJogo.Dominio.Amigos.Services;
 using ControleJogo.Dominio.Amigos.Entities;
 using AutoMapper;
+using System;
 
 namespace ControleJogo.Aplicacao.Services
 {
     public class AmigoAppService : AppServiceBase, IAmigoAppService
     {
         readonly IAmigoService amigoService;
+
+        public object Enummodel { get; private set; }
+
         public AmigoAppService(IUnitOfWork unitOfWork, IAmigoService amigoService) : base(unitOfWork)
         {
             this.amigoService = amigoService;
@@ -32,7 +36,12 @@ namespace ControleJogo.Aplicacao.Services
 
         public async Task<AmigoViewModel> Atualizar(AmigoViewModel model)
         {
-            Amigo amigo = Mapper.Map<AmigoViewModel, Amigo>(model);
+            Amigo amigo = await amigoService.ProcurarPeloId(model.Id);
+
+            amigo.AlterarNome(model.Nome);
+            amigo.AlterarEmail(model.Email);
+            amigo.AlterarLogradouro(new Dominio.Amigos.ObejctValues.Logradouro((Dominio.Amigos.ObejctValues.Estado)Enum.ToObject(typeof(Dominio.Amigos.ObejctValues.Estado), (int) model.Estado), model.CEP, model.Cidade,model.Bairro, model.Endereco, model.Numero, model.Complemento));
+
             amigo = amigoService.Atualizar(amigo);
 
             if (!amigo.ValidationResult.IsValid)
