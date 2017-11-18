@@ -70,7 +70,7 @@
 
 </div>
 
-<div id="partialEmprestimo">
+<div id="emprestimos">
 
 </div>
 <br/>
@@ -85,7 +85,7 @@
         {
             $.get('@Url.Action("ObterEmprestimosParaJogo", new { Id = Model.Id})', function (data)
             {
-                $('#partialEmprestimo').html(data);
+                $('#emprestimos').html(data);
             });
         });
     </script>

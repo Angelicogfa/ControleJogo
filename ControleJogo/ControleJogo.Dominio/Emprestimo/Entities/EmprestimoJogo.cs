@@ -42,5 +42,11 @@ namespace ControleJogo.Dominio.Emprestimo.Entities
         {
             return ValidationResult?.IsValid ?? false;
         }
+
+        public void AlterarStatusDevolvido(bool devolvido)
+        {
+            Devolvido = devolvido;
+            DataDevolucao = devolvido ? DateTime.Now : DataDevolucao;
+        }
     }
 }

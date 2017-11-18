@@ -14,10 +14,12 @@
             {
                 var item = Model.ElementAt(i);
                 <div class="item @(i == 0 ? "active" : string.Empty)">
-                    <img src="@Url.Action("ObterFotoJogo", "Jogos", new { Id = item.JogoId })" alt="@($"Jogo {item.NomeJogo}")" class="img-responsive" />
+                    <img src="@Url.Action("ObterFotoJogo", "Jogos", new { Id = item.JogoId })" alt="@($"Jogo {item.NomeJogo}")" class="img-responsive" style="align-content:stretch"/>
                     <div class="carousel-caption" role="option">
-                        <p>
-                        </p>
+                        <h1 style="font-style:oblique">
+                            @item.NomeJogo
+                        </h1>
+                        <p>Total de emprestimos: <h3>@item.QuantidadeEmprestimos</h3></p>
                     </div>
                 </div>
             }

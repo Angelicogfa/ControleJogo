@@ -106,7 +106,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
                 sql.AppendLine(" group by emp.JogoId, j.Id, j.Nome");
 
                 await conn.OpenAsync();
-                return await conn.QueryAsync<TopEmprestados>(ObterQueryParaAmigo());
+                return await conn.QueryAsync<TopEmprestados>(sql.ToString());
             }
         }
 
@@ -131,6 +131,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
                 else
                     sql.Append($" j.Id = '{Jogo}'");
             }
+            sql.AppendLine(" order by emp.DataEmprestimo desc");
 
             using (SqlConnection conn = new SqlConnection(conexao))
             {

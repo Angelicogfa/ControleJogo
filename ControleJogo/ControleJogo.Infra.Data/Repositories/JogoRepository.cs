@@ -27,8 +27,8 @@ namespace ControleJogo.Infra.Data.Repositories
         public override async Task<Jogo> ProcurarPeloId(Guid Id)
         {
             var dado = await base.ProcurarPeloId(Id);
-            if(dado != null)
-                dado.Emprestados.Where(t => !t.Devolvido);
+            if (dado != null)
+                await _ctx.Emprestimos.Where(t => t.AmigoId == Id && t.Devolvido == false).ToListAsync();
             return dado;
         }
     }

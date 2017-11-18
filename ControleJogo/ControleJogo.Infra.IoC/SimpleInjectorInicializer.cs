@@ -19,6 +19,7 @@ using ControleJogo.Infra.Identity.Managers;
 using ControleJogo.Aplicacao.Services;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
 using ControleJogo.Infra.Data.Contexto;
+using CQRS.DomainEvents;
 
 namespace ControleJogo.Infra.IoC
 {
@@ -51,7 +52,10 @@ namespace ControleJogo.Infra.IoC
 
             //Commands e Events
             container.Register<IAsyncRequestHandler<NovoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<IAsyncRequestHandler<AtualizarStatusDevolucaoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncNotificationHandler<JogoNaoDisponivelEvent>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<INotificationHandler<DomainEvent>, EmprestimoJogoAppService>(Lifestyle.Scoped);
 
             //Aplicacao
             container.Register<IAsyncNotificationHandler<EmprestimoEfetuadoEvent>, EmprestimoJogoEventHandler>(Lifestyle.Scoped);

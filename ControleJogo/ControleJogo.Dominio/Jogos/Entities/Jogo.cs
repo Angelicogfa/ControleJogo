@@ -30,7 +30,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         
         public virtual Categoria Categoria { get; private set; }
         public virtual Console Console { get; private set; }
-        public ICollection<EmprestimoJogo> Emprestados { get; private set; }
+        public virtual ICollection<EmprestimoJogo> Emprestados { get; private set; }
 
         public Jogo(string Nome, Guid CategoriaId, Guid ConsoleId, int QuantidadeJogos = 1)
         {
@@ -57,7 +57,7 @@ namespace ControleJogo.Dominio.Jogos.Entities
         public void AlterarQuantidade(int Quantidade)
         {
             QuantidadeJogos = Quantidade;
-            Indisponivel = QuantidadeJogos > 0 ? false : true;
+            AtualizarStatus();
         }
 
         public EmprestimoJogo NovoEmprestimo(Guid Amigo)
@@ -77,6 +77,11 @@ namespace ControleJogo.Dominio.Jogos.Entities
                 return true;
             }
             return false;
+        }
+
+        public void AtualizarStatus()
+        {
+            Indisponivel = CopiasDisponiveis > 0 ? false : true;
         }
 
         public bool EhValido()

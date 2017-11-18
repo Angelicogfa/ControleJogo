@@ -13,6 +13,8 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
 {
     public class EmprestarJogosSaga : SagaBase,
         IAsyncRequestHandler<NovoEmprestimoCommand>,
+        IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>,
+        IAsyncRequestHandler<AtualizarStatusDevolucaoEmprestimoCommand>,
         IAsyncNotificationHandler<JogoNaoDisponivelEvent>
     {
         readonly IJogoRepository jogoRepository;
@@ -43,11 +45,14 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
 
                 emprestimo = emprestimoJogoRepository.Adicionar(emprestimo);
                 if (await Commit())
+                {
                     await _mediator.Publish(new EmprestimoEfetuadoEvent(emprestimo.Id));
+                    await _mediator.Send(new AtualizarStatusJogoDisponivelCommand(message.Jogo));
+                }
             }
             catch (Exception ex)
             {
-                throw;
+                await _mediator.Publish(new DomainEvent("", ex.Message));
             }
         }
 
@@ -57,6 +62,24 @@ namespace ControleJogo.Dominio.Emprestimo.Sagas
 
             var nomeJogo = jogoRepository.Buscar().Where(t => t.Id == notification.JogoId).FirstOrDefault().Nome ?? notification.JogoId.ToString();
             await _mediator.Publish(new DomainEvent("", $"Jogo {nomeJogo} não está disponível para emprestimo!"));
+        }
+
+        public async Task Handle(AtualizarStatusJogoDisponivelCommand message)
+        {
+            var jogo = await jogoRepository.ProcurarPeloId(message.JogoId);
+            jogo.AtualizarStatus();
+            jogoRepository.Atualizar(jogo);
+            await Commit();
+        }
+
+        public async Task Handle(AtualizarStatusDevolucaoEmprestimoCommand message)
+        {
+            var emprestimo = await emprestimoJogoRepository.ProcurarPeloId(message.EmprestimoId);
+            emprestimo.AlterarStatusDevolvido(message.Devolvido);
+            emprestimoJogoRepository.Atualizar(emprestimo);
+
+            if (await Commit())
+                await _mediator.Send(new AtualizarStatusJogoDisponivelCommand(emprestimo.JogoId));
         }
     }
 }

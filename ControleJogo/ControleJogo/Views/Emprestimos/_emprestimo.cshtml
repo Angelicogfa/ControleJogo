@@ -40,15 +40,24 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Devolvido)
                 </td>
+                <th>
+                    @{
+                        if (Request.IsAuthenticated)
+                        {
+                            <button type="submit" onclick="AtualizarStatus('@Url.Action("AtualizarStatusDevolucao", "Emprestimos", new { Id = item.Id, Devolvido = !item.Devolvido })')" class="btn btn-success">Atualizar Status</button>
+                        }
+                    }
+                </th>
             </tr>
-        }
+         }
     </tbody>
 </table>
 
-@section scripts{
-<script type="text/javascript">
-        $(function () {
-            $('#tableEmprestimo').tablesorter();
-        })
-</script>
+<script>
+    function AtualizarStatus(Url) {
+        $.post(Url, function (data) {
+            $('#emprestimos').html(data);
+        });
     }
+</script>
+
