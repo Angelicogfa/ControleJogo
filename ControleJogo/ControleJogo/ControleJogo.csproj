@@ -141,6 +141,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ConsolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JogosController.cs" />
     <Compile Include="Extensions\ModelConverter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,6 +175,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Content\Image\FotoGameNotFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="pager\first.png" />
     <Content Include="pager\last.png" />
     <Content Include="pager\next.png" />
@@ -236,6 +240,7 @@
     <Content Include="Views\Consoles\Details.cshtml" />
     <Content Include="Views\Consoles\Edit.cshtml" />
     <Content Include="Views\Consoles\Index.cshtml" />
+    <Content Include="Views\Jogos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
