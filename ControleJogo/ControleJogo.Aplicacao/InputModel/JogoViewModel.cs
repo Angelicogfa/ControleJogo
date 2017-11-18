@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleJogo.Aplicacao.InputModel

@@ -27,7 +27,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
             sql.AppendLine(" inner join Console con on j.ConsoleId = con.Id");
 
             if (PesquisaId)
-                sql.AppendFormat(" j.Id = @Id");
+                sql.AppendFormat(" where j.Id = @Id");
 
             return sql.ToString();
         }

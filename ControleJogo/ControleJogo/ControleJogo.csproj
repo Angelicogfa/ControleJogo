@@ -241,6 +241,7 @@
     <Content Include="Views\Consoles\Edit.cshtml" />
     <Content Include="Views\Consoles\Index.cshtml" />
     <Content Include="Views\Jogos\Index.cshtml" />
+    <Content Include="Views\Jogos\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

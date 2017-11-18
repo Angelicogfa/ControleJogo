@@ -1,6 +1,9 @@
-﻿using ControleJogo.Infra.DatabaseRead.DataAcess;
+﻿using ControleJogo.Aplicacao.InputModel;
+using ControleJogo.Extensions;
+using ControleJogo.Infra.DatabaseRead.DataAcess;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -10,10 +13,14 @@ namespace ControleJogo.Controllers
     public class JogosController : Controller
     {
         readonly IJogoDataRead read;
+        readonly ICategoriaDataRead categoriaRead;
+        readonly IConsoleDataRead consoleRead;
 
-        public JogosController(IJogoDataRead read)
+        public JogosController(IJogoDataRead read, ICategoriaDataRead categoriaRead, IConsoleDataRead consoleRead)
         {
             this.read = read;
+            this.categoriaRead = categoriaRead;
+            this.consoleRead = consoleRead;
         }
 
         [AllowAnonymous]
@@ -22,10 +29,11 @@ namespace ControleJogo.Controllers
             return View(await read.BuscarTodos());
         }
 
-        
-        public ActionResult Details(Guid id)
+        public async Task<ActionResult> Details(Guid id)
         {
-            return View();
+            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() {Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            return View(await read.BuscarPeloId(id));
         }
 
         // GET: Jogo/Create
