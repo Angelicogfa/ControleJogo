@@ -8,5 +8,6 @@ namespace ControleJogo.Dominio.Jogos.Repositories
     public interface IConsoleRepository : IRepository<Entities.Console, Guid>
     {
         Task<bool> DescricaoEhUnica(Guid id, string descricao);
+        Task<bool> PossuiJogos(Guid id);
     }
 }

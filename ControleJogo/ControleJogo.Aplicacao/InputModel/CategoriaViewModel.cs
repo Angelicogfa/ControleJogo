@@ -6,7 +6,7 @@ namespace ControleJogo.Aplicacao.InputModel
     public class CategoriaViewModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Display(Name = "Descrição")]
         [Required(ErrorMessage = "{0} não informada!")]

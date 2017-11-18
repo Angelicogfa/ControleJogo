@@ -1,0 +1,41 @@
+﻿@model ControleJogo.Aplicacao.InputModel.CategoriaViewModel
+
+@{
+    ViewBag.Title = "Remover";
+}
+
+<h2>Remover</h2>
+
+<h3>Deseja realmente remover seu amigo?</h3>
+<div>
+    <h4>Amigo</h4>
+    <hr />
+
+    @Html.Partial("_ValidationSummary")
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Remover" class="btn btn-danger" />
+            </div>
+        </div>
+    }
+</div>
+
+<br />
+<div>
+    @Html.ActionLink("Voltar à listagem", "Index", "Categorias", htmlAttributes: new { @class = "btn btn-default" })
+</div>

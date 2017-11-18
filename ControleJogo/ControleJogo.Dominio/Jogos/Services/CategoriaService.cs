@@ -35,5 +35,14 @@ namespace ControleJogo.Dominio.Jogos.Services
 
             return obj = base.Atualizar(obj);
         }
+
+        public override Categoria Remover(Categoria obj)
+        {
+            obj.ValidationResult = new CategoriaPodeSerExcluidoApenasSeNaoTiverJogosValidator((ICategoriaRepository)_repository).Validate(obj);
+            if (!obj.ValidationResult.IsValid)
+                return obj;
+
+            return obj = base.Remover(obj);
+        }
     }
 }

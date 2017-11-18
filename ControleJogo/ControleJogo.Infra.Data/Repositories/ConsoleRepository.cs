@@ -13,9 +13,14 @@ namespace ControleJogo.Infra.Data.Repositories
         {
         }
 
-        public Task<bool> DescricaoEhUnica(Guid id, string descricao)
+        public async Task<bool> DescricaoEhUnica(Guid id, string descricao)
         {
-            return _ctx.Consoles.Where(t => t.Id != id).AnyAsync(t => t.Descricao.Equals(descricao));
+            return !(await _ctx.Consoles.Where(t => t.Id != id).AnyAsync(t => t.Descricao.Equals(descricao)));
+        }
+
+        public Task<bool> PossuiJogos(Guid id)
+        {
+            return _ctx.Jogos.Where(t => t.ConsoleId == id).AnyAsync();
         }
     }
 }

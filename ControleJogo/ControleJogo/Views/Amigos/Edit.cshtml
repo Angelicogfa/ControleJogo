@@ -13,7 +13,7 @@
     <div class="form-horizontal">
         <h4>Editar Amigo</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Partial("_ValidationSummary")
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.DataCadastro)
 
@@ -100,6 +100,7 @@
 }
 
 @section scripts{
+@Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         $('#buscarCep').click(function () {
             var cep = $('#CEP').val();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleJogo.Infra.DatabaseRead.OutputModel
 {
@@ -15,7 +16,10 @@ namespace ControleJogo.Infra.DatabaseRead.OutputModel
 
         }
 
+        [Key]
         public Guid Id { get; private set; }
+
+        [Display(Name = "Descrição")]
         public string Descricao { get; private set; }
     }
 }

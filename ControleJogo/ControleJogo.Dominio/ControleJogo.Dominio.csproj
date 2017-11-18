@@ -74,8 +74,10 @@
     <Compile Include="Jogos\Services\JogoService.cs" />
     <Compile Include="Jogos\Validations\CategoriaAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\CategoriaEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\CategoriaPodeSerExcluidoApenasSeNaoTiverJogosValidator.cs" />
     <Compile Include="Jogos\Validations\ConsoleAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\ConsoleEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\ConsolePodeSerExcluidoApenasSeNaoTiverJogosValidator.cs" />
     <Compile Include="Jogos\Validations\JogoEstaAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\JogoEstaConsistenteValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -138,6 +138,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AmigosController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\ModelConverter.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +224,12 @@
     <Content Include="Views\Amigos\Create.cshtml" />
     <Content Include="Views\Amigos\Edit.cshtml" />
     <Content Include="Views\Amigos\Delete.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Shared\_ValidationSummary.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

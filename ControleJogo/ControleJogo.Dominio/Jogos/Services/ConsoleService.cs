@@ -2,6 +2,7 @@
 using System;
 using ControleJogo.Dominio.Jogos.Repositories;
 using ControleJogo.Dominio.Jogos.Validations;
+using ControleJogo.Dominio.Jogos.Entities;
 
 namespace ControleJogo.Dominio.Jogos.Services
 {
@@ -33,6 +34,15 @@ namespace ControleJogo.Dominio.Jogos.Services
                 return obj;
 
             return obj = base.Atualizar(obj);
+        }
+
+        public override Entities.Console Remover(Entities.Console obj)
+        {
+            obj.ValidationResult = new ConsolePodeSerExcluidoApenasSeNaoTiverJogosValidator((IConsoleRepository)_repository).Validate(obj);
+            if (!obj.ValidationResult.IsValid)
+                return obj;
+
+            return base.Remover(obj);
         }
     }
 }
