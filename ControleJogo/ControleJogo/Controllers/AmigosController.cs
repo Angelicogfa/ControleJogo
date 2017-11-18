@@ -13,11 +13,13 @@ namespace ControleJogo.Controllers
     {
         readonly IAmigoDataRead read;
         readonly IAmigoAppService service;
+        readonly IEmprestimoJogoDataRead emprestimoRead;
 
-        public AmigosController(IAmigoDataRead read, IAmigoAppService service)
+        public AmigosController(IAmigoDataRead read, IAmigoAppService service, IEmprestimoJogoDataRead emprestimoRead)
         {
             this.read = read;
             this.service = service;
+            this.emprestimoRead = emprestimoRead;
         }
 
         [AllowAnonymous]
@@ -103,6 +105,12 @@ namespace ControleJogo.Controllers
                 ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<PartialViewResult> ObterEmprestimosParaAmigo(Guid Id)
+        {
+            return PartialView("~/Views/Emprestimos/_emprestimo.cshtml", await emprestimoRead.BuscarTodosParaAmigo(Id));
         }
     }
 }

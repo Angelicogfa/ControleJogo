@@ -17,14 +17,16 @@ namespace ControleJogo.Controllers
         readonly IJogoDataRead read;
         readonly ICategoriaDataRead categoriaRead;
         readonly IConsoleDataRead consoleRead;
-        private readonly IJogoAppService service;
+        readonly IJogoAppService service;
+        readonly IEmprestimoJogoDataRead emprestimoRead;
 
-        public JogosController(IJogoDataRead read, ICategoriaDataRead categoriaRead, IConsoleDataRead consoleRead, IJogoAppService service)
+        public JogosController(IJogoDataRead read, ICategoriaDataRead categoriaRead, IConsoleDataRead consoleRead, IJogoAppService service, IEmprestimoJogoDataRead emprestimoRead)
         {
             this.read = read;
             this.categoriaRead = categoriaRead;
             this.consoleRead = consoleRead;
             this.service = service;
+            this.emprestimoRead = emprestimoRead;
         }
 
         [AllowAnonymous]
@@ -151,6 +153,19 @@ namespace ControleJogo.Controllers
                 return File(imagemJogo, "image/png");
             else
                 return File(System.IO.File.ReadAllBytes(Server.MapPath(Url.Content("~/Content/Image/FotoGameNotFound.png"))), "image/png");
+        }
+
+        [HttpGet]
+        public async Task<PartialViewResult> ObterEmprestimosParaJogo(Guid Id)
+        {
+            return PartialView("~/Views/Emprestimos/_emprestimo.cshtml", await emprestimoRead.BuscarTodosParaJogo(Id));
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<PartialViewResult> ObterTopJogos()
+        {
+            return PartialView("_topJogosEmprestados", await emprestimoRead.TopMaisEmprestados());
         }
     }
 }

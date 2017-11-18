@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ControleJogo.Infra.DatabaseRead.OutputModel;
-using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using System.Text;
@@ -34,16 +33,16 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
 
         public async Task<JogoDTO> BuscarPeloId(Guid Id)
         {
-            using (IDbConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 return await conn.QueryFirstAsync<JogoDTO>(ObterSql(true), new { Id = Id});
             }
         }
 
         public async Task<IEnumerable<JogoDTO>> BuscarTodos()
         {
-            using (IDbConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
                 return await conn.QueryAsync<JogoDTO>(ObterSql(false));
@@ -52,7 +51,7 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
 
         public async Task<byte[]> CarregarImagem(Guid Id)
         {
-            using (IDbConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
                 var bytes = await conn.QueryFirstAsync<byte[]>("Select FotoJogo from Jogo where Id = @Id", new { Id = Id });

@@ -56,9 +56,11 @@
     <Compile Include="Services\AppServiceBase.cs" />
     <Compile Include="Services\CategoriaAppService.cs" />
     <Compile Include="Services\ConsoleAppService.cs" />
+    <Compile Include="Services\EmprestimoJogoAppService.cs" />
     <Compile Include="Services\IAmigoAppService.cs" />
     <Compile Include="Services\ICategoriaAppService.cs" />
     <Compile Include="Services\IConsoleAppService.cs" />
+    <Compile Include="Services\IEmprestimoJogoAppService.cs" />
     <Compile Include="Services\IJogoAppService.cs" />
     <Compile Include="Services\JogoAppService.cs" />
     <Compile Include="InputModel\AmigoViewModel.cs" />

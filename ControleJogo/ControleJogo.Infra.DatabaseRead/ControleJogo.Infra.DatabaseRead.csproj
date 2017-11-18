@@ -44,11 +44,13 @@
     <Compile Include="DataAcess\AmigoFacadeRead.cs" />
     <Compile Include="DataAcess\CategoriaFacadeRead.cs" />
     <Compile Include="DataAcess\ConsoleFacadeRead.cs" />
+    <Compile Include="DataAcess\EmprestimoJogoFacadeRead.cs" />
     <Compile Include="DataAcess\FacadeRead.cs" />
     <Compile Include="DataAcess\IAmigoDataRead.cs" />
     <Compile Include="DataAcess\ICategoriaDataRead.cs" />
     <Compile Include="DataAcess\IConsoleDataRead.cs" />
     <Compile Include="DataAcess\IDatabaseRead.cs" />
+    <Compile Include="DataAcess\IEmprestimoJogoDataRead.cs" />
     <Compile Include="DataAcess\IJogoDataRead.cs" />
     <Compile Include="DataAcess\JogoFacadeRead.cs" />
     <Compile Include="OutputModel\AmigoDTO.cs" />
@@ -57,6 +59,8 @@
     <Compile Include="OutputModel\Estado.cs" />
     <Compile Include="OutputModel\IOutputModel.cs" />
     <Compile Include="OutputModel\JogoDTO.cs" />
+    <Compile Include="OutputModel\EmprestimoDTO.cs" />
+    <Compile Include="OutputModel\TopEmprestados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

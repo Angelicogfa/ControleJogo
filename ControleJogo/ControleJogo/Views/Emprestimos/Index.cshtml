@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Emprestimos";
+}
+
+<h2>Emprestimos</h2>
+
+
+<div>
+    <div class="form-group col-md-4">
+        <label>Amigos</label>
+        @Html.DropDownList("AmigoId", ViewBag.Amigos as IEnumerable<SelectListItem>, "Selecione", new { @class = "form-control" });
+    </div>
+
+    <div class="form-group col-md-4">
+        <label>Jogos</label>
+        @Html.DropDownList("JogoId", ViewBag.Jogos as IEnumerable<SelectListItem>, "Selecione", new { @class = "form-control" });
+    </div>
+
+    <div class="form-group">
+        <button id="buscarEmprestimos" value="Buscar" />
+    </div>
+</div>
+
+<div id="emprestimos">
+
+</div>
+
+@section scripts{
+    <script>
+        $('#buscarEmprestimos').click(function ()
+        {
+            var idAmigo = $('AmigoId').val();
+            var idJogo = $('JogoId').val();
+
+            $.get('@Url.Action("BuscarEmprestimos")?Amigo=' + idAmigo + '&Jogo=' + idJogo, function (data) {
+                $('#emprestimos').html(data);
+            });
+        });
+    </script>
+}
+

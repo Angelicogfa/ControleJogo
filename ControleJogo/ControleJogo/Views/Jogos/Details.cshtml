@@ -69,6 +69,24 @@
     }
 
 </div>
+
+<div id="partialEmprestimo">
+
+</div>
+<br/>
+
 <div>
     @Html.ActionLink("Voltar à listagem", "Index", "Jogos", htmlAttributes: new { @class = "btn btn-default" })
 </div>
+
+@section scripts{
+    <script>
+        $(function ()
+        {
+            $.get('@Url.Action("ObterEmprestimosParaJogo", new { Id = Model.Id})', function (data)
+            {
+                $('#partialEmprestimo').html(data);
+            });
+        });
+    </script>
+}

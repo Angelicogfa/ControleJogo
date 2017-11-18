@@ -12,18 +12,18 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
     {
         public async Task<AmigoDTO> BuscarPeloId(Guid Id)
         {
-            using (IDbConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 return await conn.QueryFirstAsync<AmigoDTO>("Select * from Amigo where Id = @Id", new { Id = Id});
             }
         }
 
         public async Task<IEnumerable<AmigoDTO>> BuscarTodos()
         {
-            using (IDbConnection conn = new SqlConnection(conexao))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 return await conn.QueryAsync<AmigoDTO>("Select * from Amigo");
             }
         }

@@ -59,6 +59,7 @@ namespace ControleJogo.Infra.IoC
             container.Register<IConsoleAppService, ConsoleAppService>(Lifestyle.Scoped);
             container.Register<IJogoAppService, JogoAppService>(Lifestyle.Scoped);
             container.Register<IAmigoAppService, AmigoAppService>(Lifestyle.Scoped);
+            container.Register<IEmprestimoJogoAppService, EmprestimoJogoAppService>(Lifestyle.Scoped);
 
             //External Services
             //Email
@@ -69,6 +70,8 @@ namespace ControleJogo.Infra.IoC
             container.Register<IConsoleDataRead, ConsoleFacadeRead>(Lifestyle.Scoped);
             container.Register<IJogoDataRead, JogoFacadeRead>(Lifestyle.Scoped);
             container.Register<IAmigoDataRead, AmigoFacadeRead>(Lifestyle.Scoped);
+            container.Register<IEmprestimoJogoDataRead, EmprestimoJogoFacadeRead>(Lifestyle.Scoped);
+            
 
 
             //Identity
