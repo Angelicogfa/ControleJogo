@@ -4,6 +4,7 @@ using System;
 using ControleJogo.Dominio.Jogos.Repositories;
 using System.Threading.Tasks;
 using System.Linq;
+using ControleJogo.Dominio.Jogos.Validations;
 
 namespace ControleJogo.Dominio.Jogos.Services
 {
@@ -29,15 +30,22 @@ namespace ControleJogo.Dominio.Jogos.Services
             return obj = base.Atualizar(obj);
         }
 
-        public Task<bool> JogoDisponivelParaEmprestimo(Guid JogoId)
+        public override Jogo Remover(Jogo obj)
         {
-            var jogo = _repository.ProcurarPeloId(JogoId);
+            obj.ValidationResult = new JogoPodeSerRemovidoApenasSeNaoExistirEmprestimosEfetuadosValidator((IJogoRepository)_repository).Validate(obj);
+            if (!obj.ValidationResult.IsValid)
+                return obj;
+
+            return obj = base.Remover(obj);
+        }
+
+        public async Task<bool> JogoDisponivelParaEmprestimo(Guid JogoId)
+        {
+            var jogo = await _repository.ProcurarPeloId(JogoId);
             if (jogo == null)
                 throw new InvalidOperationException($"Jogo não localizado para o Id {JogoId}");
 
-
-            
-            return Task.FromResult(true);
+            return jogo.CopiasDisponiveis > 0;                      
         }
     }
 }

@@ -118,26 +118,27 @@ namespace ControleJogo.Controllers
             return View(model);
         }
 
-        // GET: Jogo/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            return View(await read.BuscarPeloId(id));
         }
 
-        // POST: Jogo/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirm(Guid Id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var model = (await read.BuscarPeloId(Id)).ConvertTo<JogoViewModel>();
+            model = await service.Remover(model);
 
+            if (model.ValidationResult.IsValid)
                 return RedirectToAction("Index");
-            }
-            catch
+
+            foreach (var item in model.ValidationResult.Errors)
             {
-                return View();
+                ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
             }
+            return View(await read.BuscarPeloId(Id));
         }
 
         [HttpGet()]

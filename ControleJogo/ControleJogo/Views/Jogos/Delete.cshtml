@@ -1,0 +1,78 @@
+﻿@model ControleJogo.Infra.DatabaseRead.OutputModel.JogoDTO
+
+@{
+    ViewBag.Title = "Remover";
+}
+
+<h2>Remover</h2>
+
+<h3>Deseja realmente remover este jogo?</h3>
+<div>
+    <h4>Jogo</h4>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescricaoCategoria)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescricaoCategoria)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DescricaoConsole)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DescricaoConsole)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Indisponivel)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Indisponivel)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.QuantidadeJogos)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.QuantidadeJogos)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <img src="@Url.Action("ObterFotoJogo", new { Id = Model.Id })" style="width:100px;height:100px;" />
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Remover" class="btn btn-danger" />
+            </div>
+        </div>
+    }
+</div>
+<br />
+<div>
+    @Html.ActionLink("Voltar à listagem", "Index", "Amigos", htmlAttributes: new { @class = "btn btn-default" })
+</div>
+

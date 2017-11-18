@@ -8,5 +8,6 @@ namespace ControleJogo.Dominio.Jogos.Repositories
     public interface IJogoRepository : IRepository<Jogo, Guid>
     {
         Task<bool> NomeEhUnicoPorConsole(Guid jogoId, Guid consoleId, string nome);
+        Task<bool> PossuiEmprestimos(Guid id);
     }
 }

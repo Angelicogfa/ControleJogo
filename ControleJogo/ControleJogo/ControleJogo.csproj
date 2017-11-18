@@ -244,6 +244,7 @@
     <Content Include="Views\Jogos\Details.cshtml" />
     <Content Include="Views\Jogos\Create.cshtml" />
     <Content Include="Views\Jogos\Edit.cshtml" />
+    <Content Include="Views\Jogos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

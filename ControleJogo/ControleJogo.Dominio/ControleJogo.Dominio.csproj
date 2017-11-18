@@ -80,6 +80,7 @@
     <Compile Include="Jogos\Validations\ConsolePodeSerExcluidoApenasSeNaoTiverJogosValidator.cs" />
     <Compile Include="Jogos\Validations\JogoEstaAptoPersistenciaValidator.cs" />
     <Compile Include="Jogos\Validations\JogoEstaConsistenteValidator.cs" />
+    <Compile Include="Jogos\Validations\JogoPodeSerRemovidoApenasSeNaoExistirEmprestimosEfetuadosValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

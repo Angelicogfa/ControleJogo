@@ -19,6 +19,11 @@ namespace ControleJogo.Infra.Data.Repositories
             return _ctx.Jogos.Where(t => t.ConsoleId != consoleId && t.Id != jogoId).AnyAsync(t => t.Nome.Equals(nome));
         }
 
+        public async Task<bool> PossuiEmprestimos(Guid id)
+        {
+            return await _ctx.Emprestimos.Where(t => t.JogoId == id).AnyAsync();
+        }
+
         public override async Task<Jogo> ProcurarPeloId(Guid Id)
         {
             var dado = await base.ProcurarPeloId(Id);
