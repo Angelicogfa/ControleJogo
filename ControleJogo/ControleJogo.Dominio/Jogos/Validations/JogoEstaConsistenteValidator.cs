@@ -22,9 +22,6 @@ namespace ControleJogo.Dominio.Jogos.Validations
                 .NotNull().WithMessage("Console não informado!")
                 .Must(t => t != Guid.Empty).WithMessage("Console não informado!");
 
-            RuleFor(t => t.Indisponivel)
-                .IsInEnum().WithMessage("Status informado inválido!");
-
             RuleFor(t => t.QuantidadeJogos)
                 .GreaterThanOrEqualTo(0).WithMessage("Quantidade informada é inválida! Apenas valores positivos são permitidos");
         }

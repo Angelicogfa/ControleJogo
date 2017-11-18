@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ControleJogo.Aplicacao.InputModel;
 using DomainDrivenDesign.Repositories;
 using ControleJogo.Dominio.Jogos.Services;
@@ -23,7 +22,7 @@ namespace ControleJogo.Aplicacao.Services
 
             if(!jogo.ValidationResult.IsValid)
             {
-                model.ValidationResult = model.ValidationResult;
+                model.ValidationResult = jogo.ValidationResult;
                 return model;
             }
 
@@ -38,7 +37,7 @@ namespace ControleJogo.Aplicacao.Services
 
             if (!jogo.ValidationResult.IsValid)
             {
-                model.ValidationResult = model.ValidationResult;
+                model.ValidationResult = jogo.ValidationResult;
                 return model;
             }
 
@@ -53,7 +52,7 @@ namespace ControleJogo.Aplicacao.Services
 
             if (!jogo.ValidationResult.IsValid)
             {
-                model.ValidationResult = model.ValidationResult;
+                model.ValidationResult = jogo.ValidationResult;
                 return model;
             }
 

@@ -1,10 +1,12 @@
 ﻿using ControleJogo.Aplicacao.InputModel;
+using ControleJogo.Aplicacao.Services;
 using ControleJogo.Extensions;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ControleJogo.Controllers
@@ -15,12 +17,14 @@ namespace ControleJogo.Controllers
         readonly IJogoDataRead read;
         readonly ICategoriaDataRead categoriaRead;
         readonly IConsoleDataRead consoleRead;
+        private readonly IJogoAppService service;
 
-        public JogosController(IJogoDataRead read, ICategoriaDataRead categoriaRead, IConsoleDataRead consoleRead)
+        public JogosController(IJogoDataRead read, ICategoriaDataRead categoriaRead, IConsoleDataRead consoleRead, IJogoAppService service)
         {
             this.read = read;
             this.categoriaRead = categoriaRead;
             this.consoleRead = consoleRead;
+            this.service = service;
         }
 
         [AllowAnonymous]
@@ -31,31 +35,46 @@ namespace ControleJogo.Controllers
 
         public async Task<ActionResult> Details(Guid id)
         {
-            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() {Text = t.Descricao, Value = t.Id.ToString() }).ToList();
-            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
             return View(await read.BuscarPeloId(id));
         }
 
-        // GET: Jogo/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            return View(new JogoViewModel());
         }
 
-        // POST: Jogo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(JogoViewModel model, HttpPostedFileBase image)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                if(image != null && image.ContentLength > 0 && image.ContentType == "image/png")
+                {
+                    byte[] buffer = new byte[image.ContentLength];
+                    using (BufferedStream stream = new BufferedStream(image.InputStream))
+                    {
+                        await stream.ReadAsync(buffer, 0, buffer.Length);
+                    }
+                    model.FotoJogo = buffer;
+                }
 
-                return RedirectToAction("Index");
+                model = await service.Adicionar(model);
+
+                if (model.ValidationResult.IsValid)
+                    return RedirectToAction("Index");
+
+                foreach (var item in model.ValidationResult.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.Categorias = (await categoriaRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            ViewBag.Consoles = (await consoleRead.BuscarTodos()).Select(t => new SelectListItem() { Text = t.Descricao, Value = t.Id.ToString() }).ToList();
+            return View(model);
         }
 
         // GET: Jogo/Edit/5
@@ -109,9 +128,9 @@ namespace ControleJogo.Controllers
         {
             var imagemJogo = await read.CarregarImagem(Id);
             if (imagemJogo != null && imagemJogo.FotoJogo != null && imagemJogo.FotoJogo.Length > 0)
-                return File(imagemJogo.FotoJogo, "png");
+                return File(imagemJogo.FotoJogo, "image/png");
             else
-                return File(System.IO.File.ReadAllBytes(Server.MapPath(Url.Content("~/Content/Image/FotoGameNotFound.png"))), "png");
+                return File(System.IO.File.ReadAllBytes(Server.MapPath(Url.Content("~/Content/Image/FotoGameNotFound.png"))), "image/png");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ControleJogo.Aplicacao.InputModel
     public class JogoViewModel
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required(ErrorMessage = "{0} não informado!")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "O {0} deve ter de {1} a {2} caractéres")]
