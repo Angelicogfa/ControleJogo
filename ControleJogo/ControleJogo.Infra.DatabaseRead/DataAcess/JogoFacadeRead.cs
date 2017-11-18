@@ -50,12 +50,13 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
             }
         }
 
-        public async Task<ImagemJogo> CarregarImagem(Guid Id)
+        public async Task<byte[]> CarregarImagem(Guid Id)
         {
             using (IDbConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
-                return await conn.QueryFirstAsync<ImagemJogo>("Select FotoJogo from Jogo where Id = @Id", new { Id = Id });
+                var bytes = await conn.QueryFirstAsync<byte[]>("Select FotoJogo from Jogo where Id = @Id", new { Id = Id });
+                return bytes;
             }
         }
     }

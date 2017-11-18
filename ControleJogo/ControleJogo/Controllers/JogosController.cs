@@ -127,8 +127,8 @@ namespace ControleJogo.Controllers
         public async Task<FileContentResult> ObterFotoJogo(Guid Id)
         {
             var imagemJogo = await read.CarregarImagem(Id);
-            if (imagemJogo != null && imagemJogo.FotoJogo != null && imagemJogo.FotoJogo.Length > 0)
-                return File(imagemJogo.FotoJogo, "image/png");
+            if (imagemJogo != null && imagemJogo.Length > 0)
+                return File(imagemJogo, "image/png");
             else
                 return File(System.IO.File.ReadAllBytes(Server.MapPath(Url.Content("~/Content/Image/FotoGameNotFound.png"))), "image/png");
         }

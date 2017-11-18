@@ -6,6 +6,6 @@ namespace ControleJogo.Infra.DatabaseRead.DataAcess
 {
     public interface IJogoDataRead : IDatabaseRead<JogoDTO>
     {
-        Task<ImagemJogo> CarregarImagem(Guid Id);
+        Task<byte[]> CarregarImagem(Guid Id);
     }
 }

@@ -55,7 +55,6 @@
     <Compile Include="OutputModel\CategoriaDTO.cs" />
     <Compile Include="OutputModel\ConsoleDTO.cs" />
     <Compile Include="OutputModel\Estado.cs" />
-    <Compile Include="OutputModel\ImagemJogo.cs" />
     <Compile Include="OutputModel\IOutputModel.cs" />
     <Compile Include="OutputModel\JogoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
