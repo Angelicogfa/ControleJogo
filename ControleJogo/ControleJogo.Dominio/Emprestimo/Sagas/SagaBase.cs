@@ -1,4 +1,5 @@
-﻿using DomainDrivenDesign.Repositories;
+﻿using CQRS.DomainEvents;
+using DomainDrivenDesign.Repositories;
 using MediatR;
 using System.Threading.Tasks;
 

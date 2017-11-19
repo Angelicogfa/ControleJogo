@@ -7,6 +7,9 @@ using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Advanced;
 using Microsoft.Owin;
 using System.Web;
+using MediatR.SimpleInjector;
+using CQRS.DomainEvents;
+using MediatR;
 
 [assembly: WebActivator.PostApplicationStartMethod(typeof(ControleJogo.App_Start.SimpleInjectorInitializer), "Initialize")]
 namespace ControleJogo.App_Start
@@ -40,6 +43,8 @@ namespace ControleJogo.App_Start
      
         private static void InitializeContainer(Container container)
         {
+            container = container.BuildMediator();
+            container.Register<IAsyncNotificationHandler<DomainEvent>, DomainEventHandler>(Lifestyle.Scoped);
             Infra.IoC.SimpleInjectorInicializer.Inicialize(container);
         }
     }

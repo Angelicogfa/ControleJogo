@@ -18,7 +18,7 @@ namespace ControleJogo.Controllers
         readonly IEmprestimoJogoAppService service;
 
         public EmprestimosController(
-            INotificationHandler<DomainEvent> notificationHandler,
+            IAsyncNotificationHandler<DomainEvent> notificationHandler,
             IEmprestimoJogoDataRead read, 
             IAmigoDataRead amigosRead, 
             IJogoDataRead jogosRead, 

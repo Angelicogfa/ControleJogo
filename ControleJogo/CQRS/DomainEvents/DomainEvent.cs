@@ -1,8 +1,10 @@
-﻿using CQRS.Events;
+﻿using CQRS.Commands;
+using CQRS.Events;
+using MediatR;
 
 namespace CQRS.DomainEvents
 {
-    public class DomainEvent : Event
+    public class DomainEvent : Command, INotification
     {
         public string Key { get; private set; }
         public string Value { get; private set; }

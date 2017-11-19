@@ -50,16 +50,15 @@ namespace ControleJogo.Infra.IoC
             container.Register<IAmigoService, AmigoService>(Lifestyle.Scoped);
 
             //Mediator
-            container.BuildMediator();
+            //container.BuildMediator();
 
             //Commands e Events
             container.Register<IAsyncRequestHandler<NovoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncRequestHandler<DevolverJogoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
             container.Register<IAsyncRequestHandler<RenovarEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
+            container.Register<IAsyncRequestHandler<DomainEvent>, DomainEventHandler>(Lifestyle.Scoped);
             container.Register<IAsyncNotificationHandler<JogoNaoDisponivelEvent>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            //container.Register<INotificationHandler<DomainEvent>, DomainEventHandler>(Lifestyle.Scoped);
-            container.Register(typeof(INotificationHandler<>), new Assembly[] { Assembly.GetAssembly(typeof(DomainEventHandler)) }, Lifestyle.Scoped);
 
             //Aplicacao
             container.Register<IAsyncNotificationHandler<EmprestimoEfetuadoEvent>, EmprestimoJogoEventHandler>(Lifestyle.Scoped);

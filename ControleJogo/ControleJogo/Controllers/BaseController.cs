@@ -7,7 +7,7 @@ namespace ControleJogo.Controllers
     public abstract class BaseController : Controller
     {
         private DomainEventHandler notificationHandler;
-        public BaseController(INotificationHandler<DomainEvent> notificationHandler)
+        public BaseController(IAsyncNotificationHandler<DomainEvent> notificationHandler)
         {
             this.notificationHandler = notificationHandler as DomainEventHandler;
         }
