@@ -29,7 +29,7 @@ namespace ControleJogo
                 .Include("~/Content/bootstrap.css", "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/notify").Include(
-                        "~/Scripts/bootstrap-notify.min"));
+                        "~/Scripts/bootstrap-notify.min.js"));
         }
     }
 }

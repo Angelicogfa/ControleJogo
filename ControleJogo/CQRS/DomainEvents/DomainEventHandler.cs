@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 namespace CQRS.DomainEvents
 {
     public class DomainEventHandler : IAsyncNotificationHandler<DomainEvent>,
-        IAsyncRequestHandler<DomainEvent>
+        IAsyncRequestHandler<DomainEvent>,
+        IDisposable
     {
         private List<DomainEvent> events = null;
 
@@ -15,7 +16,11 @@ namespace CQRS.DomainEvents
             events = new List<DomainEvent>();
         }
 
-       
+        public void Dispose()
+        {
+            events?.Clear();
+            events = new List<DomainEvent>();
+        }
 
         public IReadOnlyList<DomainEvent> Events()
         {

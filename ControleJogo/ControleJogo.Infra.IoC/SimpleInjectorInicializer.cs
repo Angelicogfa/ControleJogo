@@ -20,7 +20,6 @@ using ControleJogo.Aplicacao.Services;
 using ControleJogo.Infra.DatabaseRead.DataAcess;
 using ControleJogo.Infra.Data.Contexto;
 using CQRS.DomainEvents;
-using System;
 using System.Reflection;
 
 namespace ControleJogo.Infra.IoC
@@ -50,18 +49,23 @@ namespace ControleJogo.Infra.IoC
             container.Register<IAmigoService, AmigoService>(Lifestyle.Scoped);
 
             //Mediator
-            //container.BuildMediator();
+            Assembly[] assemblies =
+            {
+                typeof(EmprestarJogosSaga).GetTypeInfo().Assembly,
+                typeof(DomainEventHandler).GetTypeInfo().Assembly,
+                typeof(EmprestimoJogoEventHandler).GetTypeInfo().Assembly,
+            };
 
-            //Commands e Events
-            container.Register<IAsyncRequestHandler<NovoEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<IAsyncRequestHandler<AtualizarStatusJogoDisponivelCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<IAsyncRequestHandler<DevolverJogoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<IAsyncRequestHandler<RenovarEmprestimoCommand>, EmprestarJogosSaga>(Lifestyle.Scoped);
-            container.Register<IAsyncRequestHandler<DomainEvent>, DomainEventHandler>(Lifestyle.Scoped);
-            container.Register<IAsyncNotificationHandler<JogoNaoDisponivelEvent>, EmprestarJogosSaga>(Lifestyle.Scoped);
-
-            //Aplicacao
-            container.Register<IAsyncNotificationHandler<EmprestimoEfetuadoEvent>, EmprestimoJogoEventHandler>(Lifestyle.Scoped);
+            container.BuildMediator(assemblies);
+            container.Register(typeof(IRequestHandler<,>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(IAsyncRequestHandler<,>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(IRequestHandler<>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(IAsyncRequestHandler<>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(ICancellableAsyncRequestHandler<>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(INotificationHandler<>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(IAsyncNotificationHandler<>), assemblies, Lifestyle.Scoped);
+            container.Register(typeof(ICancellableAsyncNotificationHandler<>), assemblies, Lifestyle.Scoped);
+            
             container.Register<ICategoriaAppService, CategoriaAppService>(Lifestyle.Scoped);
             container.Register<IConsoleAppService, ConsoleAppService>(Lifestyle.Scoped);
             container.Register<IJogoAppService, JogoAppService>(Lifestyle.Scoped);
@@ -84,6 +88,7 @@ namespace ControleJogo.Infra.IoC
             container.Register<UserStore>(Lifestyle.Scoped);
             container.Register<CustomUserManager>(Lifestyle.Scoped);
             container.Register<SingInUserManager>(Lifestyle.Scoped);
+
 
             UserContext.Inicialize();
         }

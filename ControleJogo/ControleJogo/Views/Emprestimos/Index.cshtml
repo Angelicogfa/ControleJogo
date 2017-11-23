@@ -110,9 +110,27 @@
                 return;
             }
 
-            $.post('@Url.Action("Create", "Emprestimos")?Jogo=' + Jogo + '&Amigo=' + Amigo, function (data){
-                $('#emprestimos').html(data);
-                $('#modalEmprestimo').modal('hide');
+            $.post('@Url.Action("Create", "Emprestimos")?Jogo=' + Jogo + '&Amigo=' + Amigo, function (data) {
+                if (data.result == true) {
+                    $('#emprestimos').load(data.url);
+                    $('#modalEmprestimo').modal('hide');
+                    $.notify('Emprestimo Efetuado', 'success');
+                }
+                else
+                {
+                    $('#modalEmprestimo').modal('hide');
+                    JSON.parse(JSON.stringify(data.mensagem), function ()
+                    {
+                        $.each(this, function (index, value)
+                        {
+                            if (index == 'Key' || index == 'Value') {
+                                if (value != null && value != '') {
+                                    $.notify(value, (index != null && index != '') ? "error" : "warn");
+                                }
+                            }
+                        });
+                    });
+                }
             });
         });
     </script>

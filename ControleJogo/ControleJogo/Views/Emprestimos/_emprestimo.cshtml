@@ -62,8 +62,8 @@
                         {
                             if (!item.Devolvido)
                             {
-                                <button type="submit" onclick="AtualizarStatus('@Url.Action("RenovarEmprestimo", "Emprestimos", new { Id = item.Id })')" class="btn btn-info">Renovar</button>
-                                <button type="submit" onclick="AtualizarStatus('@Url.Action("DevolverJogo", "Emprestimos", new { Id = item.Id })')" class="btn btn-success">Devolver</button>
+                                <button type="submit" onclick="AtualizarStatus('Renovar', '@Url.Action("RenovarEmprestimo", "Emprestimos", new { Id = item.Id })')" class="btn btn-info">Renovar</button>
+                                <button type="submit" onclick="AtualizarStatus('Devolver', '@Url.Action("DevolverJogo", "Emprestimos", new { Id = item.Id })')" class="btn btn-success">Devolver</button>
                             }
                         }
                     }
@@ -74,14 +74,26 @@
 </table>
 
 <script>
-    function AtualizarStatus(Url) {
+
+    function AtualizarStatus(Operacao, Url) {
         $.post(Url, function (data) {
-            $('#emprestimos').html(data);
+            if (data.result == true) {
+                $.notify(Operacao == 'Renovar' ? 'Renovação efetuada!' : 'Devolução efetuada', 'alert-success')
+                $('#emprestimos').load(data.url);
+            }
+            else
+            {
+                JSON.parse(JSON.stringify(data.mensagem), function () {
+                    $.each(this, function (index, value) {
+                        if (index == 'Key' || index == 'Value') {
+                            if (value != null && value != '') {
+                                $.notify(value, (index != null && index != '') ? "alert-error" : "alert-warn");
+                            }
+                        }
+                    });
+                });
+            }
         });
     }
-
-    //$(function () {
-    //    $('#tableEmprestimo').tablesorter();
-    //})
 </script>
 

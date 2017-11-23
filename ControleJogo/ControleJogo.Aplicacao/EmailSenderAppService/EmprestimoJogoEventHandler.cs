@@ -29,6 +29,7 @@ namespace ControleJogo.Aplicacao.EmailSenderAppService
 
         public async Task Handle(EmprestimoEfetuadoEvent notification)
         {
+            
             var emprestimo = await emprestimoRepository.ProcurarPeloId(notification.EmprestimoId);
             var nomeJogo = jogoRepository.Buscar().Where(t => t.Id == emprestimo.JogoId).Select(t => t.Nome).FirstOrDefault();
             var emailAmigo = amigoRepository.Buscar().Where(t => t.Id == emprestimo.AmigoId).Select(t => t.Email).FirstOrDefault();
@@ -46,7 +47,7 @@ namespace ControleJogo.Aplicacao.EmailSenderAppService
             html.AppendLine("</body>");
             html.AppendLine("</html>");
 
-            await emailSender.Send(emailAmigo, "Emprestimo Jogo Efetaduado", html.ToString());
+            //await emailSender.Send(emailAmigo, "Emprestimo Jogo Efetaduado", html.ToString());
         }
     }
 }

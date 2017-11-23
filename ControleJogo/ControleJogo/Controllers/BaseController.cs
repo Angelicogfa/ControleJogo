@@ -1,5 +1,6 @@
 ﻿using CQRS.DomainEvents;
 using MediatR;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace ControleJogo.Controllers
@@ -23,6 +24,19 @@ namespace ControleJogo.Controllers
             {
                 ModelState.AddModelError(item.Key, item.Value);
             }
+        }
+
+        public IEnumerable<DomainEvent> GetEvents()
+        {
+            return notificationHandler.Events();
+        }
+
+        public string NotifyToJson()
+        {
+            if (!ExisteNotificacao())
+                return string.Empty;
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(notificationHandler.Events());
         }
     }
 }

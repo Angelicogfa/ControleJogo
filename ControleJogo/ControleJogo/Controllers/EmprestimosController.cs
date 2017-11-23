@@ -19,9 +19,9 @@ namespace ControleJogo.Controllers
 
         public EmprestimosController(
             IAsyncNotificationHandler<DomainEvent> notificationHandler,
-            IEmprestimoJogoDataRead read, 
-            IAmigoDataRead amigosRead, 
-            IJogoDataRead jogosRead, 
+            IEmprestimoJogoDataRead read,
+            IAmigoDataRead amigosRead,
+            IJogoDataRead jogosRead,
             IEmprestimoJogoAppService service) : base(notificationHandler)
         {
             this.read = read;
@@ -29,7 +29,7 @@ namespace ControleJogo.Controllers
             this.jogosRead = jogosRead;
             this.service = service;
         }
-        
+
         [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
@@ -43,8 +43,10 @@ namespace ControleJogo.Controllers
         public async Task<ActionResult> Create(Guid Amigo, Guid Jogo)
         {
             await service.NovoEmprestimo(Jogo, Amigo);
-            Notify();
-            return RedirectToAction("BuscarEmprestimos", new { Amigo = Amigo, Jogo = Jogo });
+            if (!ExisteNotificacao())
+                return Json(new { result = true, url = Url.Action("BuscarEmprestimos", new { Amigo = Amigo, Jogo = Jogo }) });
+            else
+                return Json(new { result = false, mensagem = GetEvents() });
         }
 
         [HttpPost]
@@ -52,9 +54,13 @@ namespace ControleJogo.Controllers
         public async Task<ActionResult> DevolverJogo(Guid Id)
         {
             await service.DevolverJogoEmprestado(Id);
-            Notify();
-            var emprestimo = await read.BuscarPeloId(Id);
-            return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
+            if (!ExisteNotificacao())
+            {
+                var emprestimo = await read.BuscarPeloId(Id);
+                return Json(new { result = true, url = Url.Action("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId }) });
+            }
+            else
+                return Json(new { result = false, mensagem = GetEvents() });
         }
 
         [HttpPost]
@@ -62,13 +68,18 @@ namespace ControleJogo.Controllers
         public async Task<ActionResult> RenovarEmprestimo(Guid Id)
         {
             await service.RenovarJogoEmprestimo(Id);
-            Notify();
-            var emprestimo = await read.BuscarPeloId(Id);
-            return RedirectToAction("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId });
+            if (!ExisteNotificacao())
+            {
+                var emprestimo = await read.BuscarPeloId(Id);
+                return Json(new { result = true, url = Url.Action("BuscarEmprestimos", new { Amigo = emprestimo.AmigoId }) });
+            }
+            else
+                return Json(new { result = false, mensagem = GetEvents() });
+
         }
 
         [AllowAnonymous]
-        public async Task<PartialViewResult> BuscarEmprestimos(Guid? Amigo = null, Guid? Jogo = null, bool? Devolvido= null)
+        public async Task<PartialViewResult> BuscarEmprestimos(Guid? Amigo = null, Guid? Jogo = null, bool? Devolvido = null)
         {
             return PartialView("_emprestimo", await read.BuscarTodosParaJogoAmigo(Amigo, Jogo, Devolvido));
         }
